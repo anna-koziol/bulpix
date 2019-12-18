@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pl_PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bulpix Media</title>
+    <link rel="icon" href="Photos/BulpixMedia-01.png">
+    <script defer src="fontawesome-free-5.12.0-web/js/all.js"></script>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <main>
+        <section id="intro" class="container-fluid">
+
+            <video id="vid" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline">
+                <source src="Photos/intro.mp4" type="video/mp4">
+            </video>
+
+            <div class="container-fluid" id="shadow"></div>
+            <div class="container">
+                <h1>Bulpix Media</h1>
+                <h2>Jesteśmy studiem filmowym z Krakowa tworzącym filmy najwyższej jakości. Zapraszamy do współpracy!
+                </h2>
+            </div>
+        </section>
+
+        <!-- 
+        <section class="waves">
+            <div class="wave wave1"></div>
+            <div class="wave wave2"></div>
+        </section> -->
+
+        <section class="container center_box">
+            <h3 class="topic">O nas</h3>
+            <div class="underline"></div>
+            <p class="description description_text">
+                Jesteśmy prężnie działającą firmą na rynku polskim tworzącą filmy najwyższej jakości. Dzięki naszej
+                wiedzy i zdobytemu doświadczeniu świadczymy profesjonalne usługi zarówno dla osób prywatnych jak i firm.
+                Wiemy, że najważniejsze jest wywołanie emocji u widza, dlatego też przygotowane i zrealizowane przez nas
+                projekty potrafią wzruszyć, zaciekawić, czy rozbawić.
+            </p>
+        </section>
+
+        <section class="container center_box">
+            <h3 class="topic">Zaufali nam</h3>
+            <div class="underline"></div>
+            <div class="row">
+                <div class="col clients center_box">
+                    <img src="Photos/clients-ksm.png" alt="">
+                </div>
+                <div class="col clients center_box">
+                    <img src="Photos/clients-gc.png" alt="">
+                </div>
+                <div class="col clients center_box">
+                    <img src="Photos/clients-fs.png" alt="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col clients center_box">
+                    <img src="Photos/clients-tnt.png" alt="">
+                </div>
+                <div class="col clients center_box">
+                    <img src="Photos/clients-msm.png" alt="">
+                </div>
+                <div class="col clients center_box">
+                    <img src="Photos/clients-aa.png" alt="">
+                </div>
+            </div>
+        </section>
+
+        <section class="container-fluid center_box">
+            <h3 class="topic">Zobacz wybrane realizacje</h3>
+            <div class="underline"></div>
+
+            <div class="row">
+                <div class="col-3 porfolio_img align-self-center">
+                    <div class="porfolio_img_description">
+                        <h4>Projekt A</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur ante quis
+                            tincidunt accumsan.</p>
+                    </div>
+                    <img src="Photos/wahid-khene-iKdQCIiSMlQ-unsplash.jpg" alt="">
+                </div>
+                <div class="col-3 porfolio_img align-self-center">
+                    <div class="porfolio_img_description">
+                        <h4>Projekt B</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur ante quis
+                            tincidunt accumsan.</p>
+                    </div>
+                    <img src="Photos/roger-erdvig-g6y5mm9Zby0-unsplash.jpg" alt="">
+                </div>
+                <div class="col-3 porfolio_img align-self-center">
+                    <div class="porfolio_img_description">
+                        <h4>Projekt C</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur ante quis
+                            tincidunt accumsan.</p>
+                    </div>
+                    <img src="Photos/kushagra-kevat-cc4VWYA1S8U-unsplash.jpg" alt="">
+                </div>
+                <div class="col-3 porfolio_img align-self-center">
+                    <div class="porfolio_img_description">
+                        <h4>Projekt D</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur ante quis
+                            tincidunt accumsan.</p>
+                    </div>
+                    <img src="Photos/jakob-owens-ZOtnmYS0JVg-unsplash.jpg" alt="">
+                </div>
+                <div class="col-3 porfolio_img align-self-center">
+                    <div class="porfolio_img_description">
+                        <h4>Projekt E</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur ante quis
+                            tincidunt accumsan.</p>
+                    </div>
+                    <img src="Photos/keagan-henman-pPxJTtxfV1A-unsplash.jpg" alt="">
+                </div>
+                <div class="col-3 porfolio_img align-self-center">
+                    <div class="porfolio_img_description">
+                        <h4>Projekt F</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur ante quis
+                            tincidunt accumsan.</p>
+                    </div>
+                    <img src="Photos/jakob-owens-CiUR8zISX60-unsplash.jpg" alt="">
+                </div>
+                <div class="col-3 porfolio_img align-self-center">
+                    <div class="porfolio_img_description">
+                        <h4>Projekt G</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur ante quis
+                            tincidunt accumsan.</p>
+                    </div>
+                    <img src="Photos/jakob-owens-9pRbuWJ6TvQ-unsplash.jpg" alt="">
+                </div>
+                <div class="col-3 porfolio_img align-self-center">
+                    <div class="porfolio_img_description">
+                        <h4>Projekt H</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur ante quis
+                            tincidunt accumsan.</p>
+                    </div>
+                    <img src="Photos/jakob-owens-0Xl9HAf0RyE-unsplash.jpg" alt="">
+                </div>
+                <div class="col-3 porfolio_img align-self-center">
+                    <div class="porfolio_img_description">
+                        <h4>Projekt I</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur ante quis
+                            tincidunt accumsan.</p>
+                    </div>
+                    <img src="Photos/roger-erdvig-g6y5mm9Zby0-unsplash.jpg" alt="">
+                </div>
+            </div>
+
+        </section>
+
+
+        <section class="container center_box">
+            <h3 class="topic">Współpraca</h3>
+            <div class="underline"></div>
+            <p class="description description_text">
+                Wszechstronność to nasze drugie imię. Dzięki kompleksowemu podejściu realizujemy projekty o różnej
+                tematyce, począwszy od wywiadów, przez teledyski aż po filmy reklamowe.
+            </p>
+            <div class="row">
+                <div class="col center_align">
+                    <div class="icon_circle center_box"><i class="fas fa-photo-video"></i></div>
+                    <h4 class="text-center">Teledyski</h4>
+                    <p class="description text-center text_smaller">Wizualizujemy Twój utwór i przedstawiamy jego
+                        historię w
+                        formie wideoklipu łącząc w niebanalny sposób obraz z dźwiękiem. Taka forma jest zdecydowanie
+                        lepiej odbierana
+                        przez słuchaczy, dlatego pozwól, aby Twoje dzieło dotarło do znacznie szerszego grona odbiorców.
+                    </p>
+                </div>
+                <div class="col center_align">
+                    <div class="icon_circle center_box"><i class="fas fa-film"></i></div>
+                    <h4 class="text-center">Filmy reklamowe</h4>
+                    <p class="description text-center text_smaller">W krótki i treściwy sposób zareklamuj siebie, swój
+                        produkt,
+                        markę lub usługę.
+                        Reklama posiada ogromną moc przekazu i jest jednym z najlepszych dostępnych form marketingu,
+                        jakie obecnie dostępne są na rynku.</p>
+                </div>
+                <div class="col center_align">
+                    <div class="icon_circle center_box"><i class="far fa-star"></i></div>
+                    <h4 class="text-center">Filmy wizerunkowe</h4>
+                    <p class="description text-center text_smaller">Są świetnym narzędziem w budowaniu wizerunku firmy.
+                        Przedstaw się jako
+                        profesjonalista w swoim fachu, podkreśl atuty swojej działalności i wyjdź przed szereg
+                        konkurencji. Pokaż, że to Ty, Twoje produkty i usługi są najlepsze na rynku!</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col center_align">
+                    <div class="icon_circle center_box"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h4 class="text-center">Filmy instruktażowe i szkoleniowe</h4>
+                    <p class="description text-center text_smaller">Najlepszy możliwy sposób na opowiedzenie i
+                        wyjaśnienie jak
+                        działa Twój produkt lub usługa. Taki rodzaj przekazu to idealne uzupełnienie objaśniające to co
+                        sprzedajesz.
+                    </p>
+                </div>
+                <div class="col center_align">
+                    <div class="icon_circle center_box"><i class="fas fa-microphone-alt"></i></div>
+                    <h4 class="text-center">Wywiady i podcasty</h4>
+                    <p class="description text-center text_smaller">Przedstaw to co chcesz opowiedzieć w najwyższej
+                        jakości
+                        dźwięku. Daj się poznać swoim słuchaczom rejestrując emocje widoczne na twarzy, które towarzyszą
+                        podczas rozmowy.
+                    </p>
+                </div>
+                <div class="col center_align">
+                    <div class="icon_circle center_box"><i class="fas fa-tshirt"></i></div>
+                    <h4 class="text-center">Filmy fashion </h4>
+                    <p class="description text-center text_smaller">Zaprezentuj swoją linię odzieżową, pokaż swój styl i
+                        przekonaj wszystkich, że to właśnie Twoje ubrania powinni nosić.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col center_align">
+                    <div class="icon_circle center_box"><i class="fas fa-home"></i></div>
+                    <h4 class="text-center">Filmy nieruchomości (real estate)</h4>
+                    <p class="description text-center text_smaller">Zaprezentuj swoją nieruchomość w postaci
+                        profesjonalnego
+                        filmu, dzięki czemu zwiększysz szanse na pozyskanie Klienta. Aż 36% osób korzysta wyłącznie z
+                        video jako źródła informacji podczas przeglądania tego typu ofert.
+                    </p>
+                </div>
+                <div class="col center_align">
+                    <div class="icon_circle center_box"><i class="fas fa-portrait"></i></div>
+                    <h4 class="text-center">Portfolio/CV</h4>
+                    <p class="description text-center text_smaller">Chcesz wyróżnić się na tle na tle innych i zwiększyć
+                        swoje
+                        szanse na rozmowie rekrutacyjnej? Przedstaw swoje CV w niecodziennej formie opowiadając o swoim
+                        doświadczeniu i umiejętnościach poprzez film. Twoja aplikacja na pewno zostanie zapamiętana i
+                        wywrze nie lada wrażenie na potencjalnym pracodawcy.
+                    </p>
+                </div>
+                <div class="col center_align">
+                    <div class="icon_circle  center_box"> <i class="far fa-paper-plane"></i></div>
+                    <h4 class="text-center">Filmy z powietrza </h4>
+                    <p class="description text-center text_smaller">Świetnym uzupełnieniem do (prawie) każdej produkcji
+                        są
+                        ujęcia z lotu ptaka. Nasza firma dysponuje zarówno dronami, jak i osobami przeszkolonymi do ich
+                        wykorzystania!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="container-fluid center_box  yellow_back">
+            <div class="row">
+                <div class="col center_box">
+                    <h3 class="topic">Co zapewniamy</h3>
+                    <div class="underline"></div>
+                    <ul class="description description_text">
+                        <li> <i class="fas fa-circle"></i> Profesjonalny sprzęt filmowy oraz pełną jego obsługę (kamera,
+                            oświetlenie, udźwiękowienie,
+                            reżyseria)</li>
+                        <li><i class="fas fa-circle"></i> Montaż filmowy</li>
+                        <li><i class="fas fa-circle"></i> Ustalenie lokalizacji (location scouting)</li>
+                        <li><i class="fas fa-circle"></i> Scenografia - przygotowanie planu filmowego i niezbędnych
+                            rekwizytów</li>
+                        <li><i class="fas fa-circle"></i> Dobór aktorów/statystów/lektorów</li>
+                        <li><i class="fas fa-circle"></i> Make up</li>
+                    </ul>
+                </div>
+                <div class="col center_box">
+                    <img src="Photos/undraw_videographer_nnc7.svg" alt="video_img" class="img_center">
+                </div>
+            </div>
+        </section>
+
+
+        <section class="container center_box">
+            <h3 class="topic">Proces realizacji projektu</h3>
+            <div class="underline"></div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="circle-wrap">
+                        <div class="circle">
+
+                            <div class="mask full">
+                                <div class="fill"></div>
+                            </div>
+
+                            <div class="mask half">
+                                <div class="fill"></div>
+                            </div>
+
+                            <div class="inside-circle">
+                                1. Budżet
+                            </div>
+
+                        </div>
+                    </div>
+                    <p class="description">W pierwszej kolejności wspólnie z Klientem określamy budżet na produkcję.
+                        Pozwoli nam to ocenić
+                        możliwości i skalę przedsięwzięcia.</p>
+                </div>
+
+                <div class="col">
+                    <div class="circle-wrap">
+                        <div class="circle">
+
+                            <div class="mask full">
+                                <div class="fill"></div>
+                            </div>
+
+                            <div class="mask half">
+                                <div class="fill"></div>
+                            </div>
+
+                            <div class="inside-circle">
+                                2. Pomysł
+                            </div>
+
+                        </div>
+                    </div>
+                    <p class="description">Na podstawie wytycznych oraz oczekiwań Klienta w ciągu paru dni
+                        przygotowujemy wstępne projekty
+                        produkcji oraz w czasie konsultacji z Klientem wybieramy jeden z nich.</p>
+                </div>
+
+                <div class="col">
+                    <div class="circle-wrap">
+                        <div class="circle">
+
+                            <div class="mask full">
+                                <div class="fill"></div>
+                            </div>
+
+                            <div class="mask half">
+                                <div class="fill"></div>
+                            </div>
+
+                            <div class="inside-circle">
+                                3. Scenariusz
+                            </div>
+
+                        </div>
+                    </div>
+                    <p class="description">Przygotowujemy szczegółowy scenariusz na podstawie wybranego pomysłu oraz
+                        określamy dokładne
+                        koszta produkcji. </p>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <div class="circle-wrap">
+                        <div class="circle">
+
+                            <div class="mask full">
+                                <div class="fill"></div>
+                            </div>
+
+                            <div class="mask half">
+                                <div class="fill"></div>
+                            </div>
+
+                            <div class="inside-circle">
+                                4. Preprodukcja
+                            </div>
+
+                        </div>
+                    </div>
+                    <p class="description">Po akceptacji oferty ustalamy wszystkie szczegóły i harmonogram działania
+                        (data i godzina,
+                        lokalizacja planu zdjęciowego).</p>
+                </div>
+
+                <div class="col">
+                    <div class="circle-wrap">
+                        <div class="circle">
+
+                            <div class="mask full">
+                                <div class="fill"></div>
+                            </div>
+
+                            <div class="mask half">
+                                <div class="fill"></div>
+                            </div>
+
+                            <div class="inside-circle">
+                                5. Produkcja
+                            </div>
+
+                        </div>
+                    </div>
+                    <p class="description">Światło! Kamera! Akcja! Przenosimy scenariusz prosto w oko obiektywu.</p>
+                </div>
+                <div class="col">
+                    <div class="circle-wrap">
+                        <div class="circle">
+
+                            <div class="mask full">
+                                <div class="fill"></div>
+                            </div>
+
+                            <div class="mask half">
+                                <div class="fill"></div>
+                            </div>
+
+                            <div class="inside-circle">
+                                6. Postprodukcja
+                            </div>
+
+                        </div>
+                    </div>
+                    <p class="description">Wybieramy z Klientem podkład muzyczny i lektora. Całość składamy w jeden
+                        materiał – ujęcia,
+                        udźwiękowienie, kolorkorekcja i koloryzacja, efekty specjalne.</p>
+                </div>
+            </div>
+
+            <div class="row">
+
+
+                <div class="col">
+                    <div class="circle-wrap">
+                        <div class="circle">
+
+                            <div class="mask full">
+                                <div class="fill"></div>
+                            </div>
+
+                            <div class="mask half">
+                                <div class="fill"></div>
+                            </div>
+
+                            <div class="inside-circle">
+                                7. Finalizacja
+                            </div>
+
+                        </div>
+                    </div>
+                    <p class="description">Profesjonalnie przygotowany materiał oddajemy prosto do Klienta w formie
+                        pliku video.</p>
+                </div>
+            </div>
+
+
+        </section>
+
+    </main>
+</body>
+
+</html>
