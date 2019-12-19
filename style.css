@@ -166,7 +166,7 @@ h2 {
 }
 
 .description_text {
-    width: 70%;
+    width: 80%;
     padding-top: 20px;
 }
 
@@ -225,30 +225,22 @@ h2 {
 }
 
 .clients {
-    border-radius: 5px;
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    height: auto;
-    width: 200px;
-    height: 250px;
-    margin: 15px;
-}
-
-.clients:hover {
-    box-shadow: 0px 3px 35px rgba(0, 0, 0, 0.2);
-    transition: all 1s ease-in-out;
+    padding: 15px;
 }
 
 .clients img {
     max-width: 100%;
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
+    width: 50%;
+    height: auto;
 }
 
 .clients img:hover {
     -webkit-filter: grayscale(0%);
     filter: grayscale(0%);
     transition: all 1s ease-in-out;
+    cursor: pointer;
 }
 
 .icon_circle {
@@ -452,6 +444,14 @@ footer h5 {
     padding-top: 10px;
 }
 
+
+@media (max-width: 768px) {
+    footer h3 {
+        padding-top: 10px;
+    }
+  }
+
+  
 footer img {
     width: 10em;
 }
@@ -466,6 +466,7 @@ footer input {
     background-color: transparent;
     border: 0px solid #434343;
     border-bottom-width: 1px;
+    color: #706e6e;
 }
 
 button {
