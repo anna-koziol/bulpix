@@ -7,6 +7,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: #fff;
+    padding-right: 0 !important;
 }
 
 .container-fluid {
@@ -20,7 +21,7 @@ main {
     background: #fff;
     position: relative;
     z-index: 2;
-    margin-bottom: 70vh
+    margin-bottom: 70vh;
 }
 
 #intro {
@@ -148,22 +149,16 @@ h2 {
 }
 */
 
-/* width */
-
 ::-webkit-scrollbar {
-    width: 0.8em;
+    width: 0.8em !important;
 }
-
-/* Track */
 
 ::-webkit-scrollbar-track {
-    box-shadow: inset 100px 100px 100px rgb(16, 14, 24);
+    box-shadow: inset 100px 100px 100px rgb(16, 14, 24) !important;
 }
 
-/* Handle */
-
 ::-webkit-scrollbar-thumb {
-    background-image: linear-gradient(to top, #F6AE2D 0%, #F7CB15 100%);
+    background-image: linear-gradient(to top, #F6AE2D 0%, #F7CB15 100%) !important;
     height: 10px;
     border-radius: 8px;
 }
@@ -418,7 +413,7 @@ li {
     100% {
         -webkit-transform: scale(1);
         transform: scale(1);
-        opacity: 0.9;
+        opacity: 0.95;
     }
 }
 
@@ -431,7 +426,7 @@ li {
     100% {
         -webkit-transform: scale(1);
         transform: scale(1);
-        opacity: 0.9;
+        opacity: 0.95;
     }
 }
 
@@ -463,6 +458,20 @@ footer h5 {
 @media (max-width: 768px) {
     footer h3 {
         padding-top: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .porfolio_img_description h4, .porfolio_img_description p{
+        padding: 0px !important;
+        margin: 0px !important;
+    }
+    .porfolio_img_description button {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+    .modal-dialog {
+        max-width: 95vw !important;
     }
 }
 
@@ -504,6 +513,7 @@ button:hover {
 
 .modal-body video {
     max-width: 100% !important;
+    max-height: 90vh;
 }
 
 .modal-backdrop {
@@ -519,7 +529,28 @@ button:hover {
     color: #30D1D1;
 }
 
+.porfolio_img_description button:hover {
+    background-color: #212529;
+    border-color: #212529;
+    color: #fff;
+    transition: all 0.7s ease-in-out;
+}
+
+.modal-header .close, .modal-header .close:hover, .modal-header .close:active {
+    color: white;
+    border: 0px solid transparent !important;
+}
+
 .modal-header .close:hover {
     background-color: transparent;
-    color: #30D1D1;
+    color: #000;
+}
+
+.modal-dialog {
+    max-width: 75vw;
+}
+
+.modal-header {
+    background-color: #30D1D1;
+    color: white;
 }

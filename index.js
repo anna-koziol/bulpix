@@ -24,6 +24,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         });
 
+        $('.close').click(function () {
+            var videos  = $('.portfolio_vid')
+            for (let i = 0; i < videos.length; i ++) {
+                //videos[i].pause();
+                videos[i].load();
+            }
+        });
+
     })
 });
 
