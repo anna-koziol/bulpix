@@ -11,9 +11,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
         $('.fill:eq(12), .fill:eq(13)').css('background-color', '#0B132B');
 
 
-        $('.play_button').click(function() {
+        $('.play_button').click(function () {
             let vid = $(this).parent().find('video')[0]
-            vid.paused ? vid.play() : vid.pause();          
+            vid.paused ? vid.play() : vid.pause();
+        });
+
+        $(window).scroll(function () {
+            var height = $(window).scrollTop();
+            var window_height = $(window).height();
+
+            (height > window_height) ? $('footer').css("zIndex", -9) : $('footer').css("zIndex", -11);
+
         });
 
     })
