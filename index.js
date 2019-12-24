@@ -2,6 +2,15 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     $(document).ready(function () {
         console.log("Podłączono")
+
+        var video = document.getElementById("vid");
+        video.addEventListener('loadeddata', function() {
+            $('#loading').addClass( "slide_display_none" );
+            $('body').css('overflow-y', 'scroll');
+         }, false);
+
+
+        $('main').css('margin-bottom', $('#contact').innerHeight());
         $('.fill:eq(0), .fill:eq(1)').css('background-color', '#5BC0BE');
         $('.fill:eq(2), .fill:eq(3)').css('background-color', '#F6AE2D');
         $('.fill:eq(4), .fill:eq(5)').css('background-color', '#3A506B');
@@ -25,8 +34,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
         });
 
         $('.close').click(function () {
-            var videos  = $('.portfolio_vid')
-            for (let i = 0; i < videos.length; i ++) {
+            var videos = $('.portfolio_vid')
+            for (let i = 0; i < videos.length; i++) {
                 //videos[i].pause();
                 videos[i].load();
             }

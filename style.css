@@ -8,6 +8,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background: #fff;
     padding-right: 0 !important;
+    overflow-y: hidden;
 }
 
 .container-fluid {
@@ -292,6 +293,10 @@ li {
     margin-right: 10px;
 }
 
+/* PRCOES - CIRCLE BAR */
+
+/*51DEG*/
+
 .circle-wrap {
     margin: 50px auto;
     width: 150px;
@@ -316,17 +321,101 @@ li {
     background-color: #1Bd0aE;
 }
 
-.mask.full, .fill {
-    animation: fill ease-in-out 3s;
-    transform: rotate(126deg);
+.mask.full1, .fill1 {
+    animation: fill1 ease-in-out 3s;
+    transform: rotate(25deg);
 }
 
-@keyframes fill {
+@keyframes fill1 {
     0% {
         transform: rotate(0deg);
     }
     100% {
-        transform: rotate(126deg);
+        transform: rotate(25deg);
+    }
+}
+
+.mask.full2, .fill2 {
+    animation: fill2 ease-in-out 3s;
+    transform: rotate(50deg);
+}
+
+@keyframes fill2 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(50deg);
+    }
+}
+
+.mask.full3, .fill3 {
+    animation: fill3 ease-in-out 3s;
+    transform: rotate(75deg);
+}
+
+@keyframes fill3 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(75deg);
+    }
+}
+
+.mask.full4, .fill4 {
+    animation: fill4 ease-in-out 3s;
+    transform: rotate(100deg);
+}
+
+@keyframes fill4 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(100deg);
+    }
+}
+
+.mask.full5, .fill5 {
+    animation: fill5 ease-in-out 3s;
+    transform: rotate(125deg);
+}
+
+@keyframes fill5 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(125deg);
+    }
+}
+
+.mask.full6, .fill6 {
+    animation: fill6 ease-in-out 3s;
+    transform: rotate(160deg);
+}
+
+@keyframes fill6 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(160deg);
+    }
+}
+
+.mask.full7, .fill7 {
+    animation: fill7 ease-in-out 3s;
+    transform: rotate(180deg);
+}
+
+@keyframes fill7 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(180deg);
     }
 }
 
@@ -441,7 +530,8 @@ footer {
     font-size: 0.8em;
     position: fixed;
     bottom: 0;
-    height: 70vh;
+    min-height: 300px;
+    height: auto;
     z-index: -11;
 }
 
@@ -462,7 +552,7 @@ footer h5 {
 }
 
 @media (max-width: 576px) {
-    .porfolio_img_description h4, .porfolio_img_description p{
+    .porfolio_img_description h4, .porfolio_img_description p {
         padding: 0px !important;
         margin: 0px !important;
     }
@@ -553,4 +643,94 @@ button:hover {
 .modal-header {
     background-color: #30D1D1;
     color: white;
+}
+
+#loading {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: #fff;
+}
+
+#loading img {
+    width: 25%;
+}
+
+/* LOADER  from https://loading.io/css/ */
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #0087be;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #0087be transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.slide_display_none {
+    -webkit-animation: slide_display_none 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: slide_display_none 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@-webkit-keyframes slide_display_none {
+    0% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateZ(-1100px);
+        transform: translateZ(-1100px);
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes slide_display_none {
+    0% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateZ(-1100px);
+        transform: translateZ(-1100px);
+        opacity: 0;
+        display: none;
+    }
 }
