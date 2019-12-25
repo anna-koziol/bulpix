@@ -279,7 +279,7 @@ li {
 }
 
 .circle1_aniamte {
-  animation: fill1 ease-in-out 3s;
+  animation: fill1 ease-in-out 2s;
   transform: rotate(25deg);
 }
 
@@ -293,7 +293,7 @@ li {
 }
 
 .circle2_aniamte  {
-  animation: fill2 ease-in-out 3s;
+  animation: fill2 ease-in-out 2s;
   transform: rotate(50deg);
 }
 
@@ -307,7 +307,7 @@ li {
 }
 
 .circle3_aniamte {
-  animation: fill3 ease-in-out 3s;
+  animation: fill3 ease-in-out 2s;
   transform: rotate(75deg);
 }
 
@@ -321,7 +321,7 @@ li {
 }
 
 .circle4_aniamte {
-  animation: fill4 ease-in-out 3s;
+  animation: fill4 ease-in-out 2s;
   transform: rotate(100deg);
 }
 
@@ -335,7 +335,7 @@ li {
 }
 
 .circle5_aniamte {
-  animation: fill5 ease-in-out 3s;
+  animation: fill5 ease-in-out 2s;
   transform: rotate(125deg);
 }
 
@@ -349,7 +349,7 @@ li {
 }
 
 .circle6_aniamte {
-  animation: fill6 ease-in-out 3s;
+  animation: fill6 ease-in-out 2s;
   transform: rotate(160deg);
 }
 
@@ -363,7 +363,7 @@ li {
 }
 
 .circle7_aniamte {
-  animation: fill7 ease-in-out 3s;
+  animation: fill7 ease-in-out 2s;
   transform: rotate(180deg);
 }
 
@@ -741,6 +741,7 @@ button:hover {
   padding: 0;
   position: sticky;
   top: 0;
+  opacity: 0;
 }
 
 #nav_1 {
