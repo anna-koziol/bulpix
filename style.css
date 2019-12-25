@@ -566,6 +566,7 @@ footer h5 {
     }
     .modal-dialog {
         max-width: 95vw !important;
+        margin-top: 25vh;
     }
 }
 
@@ -773,7 +774,7 @@ button:hover {
 
 #nav_1, #nav_2 {
     background-color: #fff;
-    z-index: 999;
+    z-index: 990;
     border-bottom: 1px solid #0087be;
     padding: 0;
     position: sticky;

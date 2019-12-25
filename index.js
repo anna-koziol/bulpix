@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         $(window).resize(function () {
             ($(window).width() >= 768) ? $('#nav_1').show() : $('#nav_2').show();
+            $('main').css('margin-bottom', $('#contact').innerHeight());
         });
 
         $('.close').click(function () {
