@@ -2,12 +2,15 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     $(document).ready(function () {
         console.log("Podłączono")
+        $('#nav_1, #nav_2').hide();
 
         var video = document.getElementById("vid");
-        video.addEventListener('loadeddata', function() {
-            $('#loading').addClass( "slide_display_none" );
+        video.addEventListener('loadeddata', function () {
+            $('#loading').addClass("slide_display_none");
             $('body').css('overflow-y', 'scroll');
-         }, false);
+
+            ($(window).width() >= 768) ? $('#nav_1').show() : $('#nav_2').show();
+        }, false);
 
 
         $('main').css('margin-bottom', $('#contact').innerHeight());
@@ -28,15 +31,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
         $(window).scroll(function () {
             var height = $(window).scrollTop();
             var window_height = $(window).height();
+            var menu_height = $('#menu1').innerHeight();
 
             (height > window_height) ? $('footer').css("zIndex", -9) : $('footer').css("zIndex", -11);
+            (height >= menu_height) ? $('#menu1').hide() : $('#menu1').show();
+        });
 
+        $(window).resize(function () {
+            ($(window).width() >= 768) ? $('#nav_1').show() : $('#nav_2').show();
         });
 
         $('.close').click(function () {
             var videos = $('.portfolio_vid')
             for (let i = 0; i < videos.length; i++) {
-                //videos[i].pause();
                 videos[i].load();
             }
         });
