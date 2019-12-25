@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         video.addEventListener('loadeddata', function () {
             $('#loading').addClass("slide_display_none");
             $('body').css('overflow-y', 'scroll');
-
             ($(window).width() >= 768) ? $('#nav_1').show() : $('#nav_2').show();
         }, false);
 
@@ -32,9 +31,36 @@ document.addEventListener("DOMContentLoaded", function (event) {
             var height = $(window).scrollTop();
             var window_height = $(window).height();
             var menu_height = $('#menu1').innerHeight();
-
             (height > window_height) ? $('footer').css("zIndex", -9) : $('footer').css("zIndex", -11);
-            (height >= menu_height) ? $('#menu1').hide() : $('#menu1').show();
+            (height > menu_height) ? $('#menu1').addClass('hideNav') : $('#menu1').removeClass('hideNav');
+
+            //ANIMATION TO PROGRESSBAR
+            let circle_row_1_t = $("#circle_row_1").offset().top;
+            let circle_row_2_t = $("#circle_row_2").offset().top;
+            let circle_row_3_t = $("#circle_row_3").offset().top;
+
+            let circle_row_1_b = circle_row_1_t + $("#circle_row_1").outerHeight();
+            let circle_row_2_b = circle_row_2_t + $("#circle_row_2").outerHeight();
+            let circle_row_3_b = circle_row_3_t + $("#circle_row_3").outerHeight();
+            let windowBottom = (height + $(window).height());
+
+            if ((circle_row_1_b >= height) && (circle_row_1_t <= windowBottom)) {
+                $(".mask.full1, .fill1").addClass('circle1_aniamte');
+                $(".mask.full2, .fill2").addClass('circle2_aniamte');
+                $(".mask.full3, .fill3").addClass('circle3_aniamte');     
+            }
+
+            if ((circle_row_2_b >= height) && (circle_row_2_t <= windowBottom)) {
+                $(".mask.full4, .fill4").addClass('circle4_aniamte');
+                $(".mask.full5, .fill5").addClass('circle5_aniamte');
+                $(".mask.full6, .fill6").addClass('circle6_aniamte');     
+            }
+
+            if ((circle_row_3_b >= height) && (circle_row_3_t <= windowBottom)) {
+                $(".mask.full7, .fill7").addClass('circle7_aniamte');  
+            }
+
+
         });
 
         $(window).resize(function () {
@@ -47,6 +73,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
             for (let i = 0; i < videos.length; i++) {
                 videos[i].load();
             }
+        });
+
+        //changed display from block to flex when modal is open
+        $('#modal1').on('shown.bs.modal', () => {
+            $('#modal1').css('display', 'flex')
+        });
+        $('#modal2').on('shown.bs.modal', () => {
+            $('#modal2').css('display', 'flex')
         });
 
     })
