@@ -55,17 +55,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
             if ((circle_row_1_b >= height) && (circle_row_1_t <= windowBottom)) {
                 $(".mask.full1, .fill1").addClass('circle1_aniamte');
                 $(".mask.full2, .fill2").addClass('circle2_aniamte');
-                $(".mask.full3, .fill3").addClass('circle3_aniamte');     
+                $(".mask.full3, .fill3").addClass('circle3_aniamte');
             }
 
             if ((circle_row_2_b >= height) && (circle_row_2_t <= windowBottom)) {
                 $(".mask.full4, .fill4").addClass('circle4_aniamte');
                 $(".mask.full5, .fill5").addClass('circle5_aniamte');
-                $(".mask.full6, .fill6").addClass('circle6_aniamte');     
+                $(".mask.full6, .fill6").addClass('circle6_aniamte');
             }
 
             if ((circle_row_3_b >= height) && (circle_row_3_t <= windowBottom)) {
-                $(".mask.full7, .fill7").addClass('circle7_aniamte');  
+                $(".mask.full7, .fill7").addClass('circle7_aniamte');
             }
 
 
@@ -91,6 +91,26 @@ document.addEventListener("DOMContentLoaded", function (event) {
             $('#modal2').css('display', 'flex')
         });
 
+        //send message 
+        $('#sendMessageButton').on('click', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append("mail", $("#form_mail").val());
+            formData.append("text", $("#form_text").val());
+
+            fetch("php/PHPMailer/src/sendMessage.php", {
+                method: "post",
+                body: formData,
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.data)
+                        console.log('wysłano')
+                    else console.log('nie wysłano')
+                })
+                .catch(error => console.log("Błąd: ", error));
+        })
     })
 });
 
