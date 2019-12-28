@@ -98,7 +98,6 @@ h1,
 }
 
 .topic {
-  margin-top: 40px;
   text-transform: uppercase;
 }
 
@@ -492,6 +491,7 @@ footer {
   min-height: 300px;
   height: auto;
   z-index: -11;
+  width: 100vw;
 }
 
 footer h3,
@@ -530,13 +530,15 @@ footer h5 {
 
 footer img {
   width: 10em;
+  margin-top: 2em;
+  margin-bottom: 2em;
 }
 
 footer p {
   margin-bottom: 0rem !important;
 }
 
-footer input {
+footer input, footer textarea {
   width: 80%;
   margin-top: 1rem;
   background-color: transparent;
@@ -553,7 +555,7 @@ button {
   padding-left: 10%;
   padding-right: 10%;
   color: white;
-  margin-top: 10%;
+  margin-top: 5%;
   text-transform: uppercase;
 }
 
@@ -720,7 +722,7 @@ button:hover {
 
 .menu_box a:hover,
 #contact a:hover {
-  color: #f7cb15;
+  color: #0087be;
   text-decoration: none;
   transition: all 0.5s ease-in-out;
 }
@@ -818,4 +820,12 @@ button:hover {
 
 #nav_2 .navbar-nav a {
   margin-left: 10px;
+}
+
+#cooperation {
+  margin-bottom: 2em;
+}
+
+main section {
+  padding-top: 80px  !important;
 }

@@ -2,16 +2,22 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     $(document).ready(function () {
         console.log("Podłączono")
-
         var video = document.getElementById("vid");
 
         function checkLoad() {
-            console.log(video.readyState)
             if (video.readyState === 4) {
+                //complete load video
                 $('#loading').addClass("slide_display_none");
                 $('body').css('overflow-y', 'scroll');
                 ($(window).width() >= 768) ? $('#nav_1').show() : $('#nav_2').show();
                 $('#nav_1, #nav_2').css("opacity", 1);
+                //complete load logo in footer
+                $("#logo_contact").one("load", function() {
+                    $('main').css('margin-bottom', $('#contact').innerHeight());
+                  }).each(function() {
+                    if(this.complete) { $(this).trigger('load'); }
+                  });
+                
             } else {
                 setTimeout(checkLoad, 100);
             }
@@ -19,15 +25,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         checkLoad();
 
-
-        $('main').css('margin-bottom', $('#contact').innerHeight());
-        $('.fill:eq(0), .fill:eq(1)').css('background-color', '#5BC0BE');
-        $('.fill:eq(2), .fill:eq(3)').css('background-color', '#F6AE2D');
-        $('.fill:eq(4), .fill:eq(5)').css('background-color', '#3A506B');
-        $('.fill:eq(6), .fill:eq(7)').css('background-color', '#33658A');
-        $('.fill:eq(8), .fill:eq(9)').css('background-color', '#6b94bf');
-        $('.fill:eq(10), .fill:eq(11)').css('background-color', '#F7CB15');
-        $('.fill:eq(12), .fill:eq(13)').css('background-color', '#0B132B');
+        $('.fill:eq(0), .fill:eq(1)').css('background-color', '#FF2E2E');
+        $('.fill:eq(2), .fill:eq(3)').css('background-color', '#FFB52E');
+        $('.fill:eq(4), .fill:eq(5)').css('background-color', '#FFFF2C');
+        $('.fill:eq(6), .fill:eq(7)').css('background-color', '#2C952C');
+        $('.fill:eq(8), .fill:eq(9)').css('background-color', '#2CFFFF');
+        $('.fill:eq(10), .fill:eq(11)').css('background-color', '#2C2CFF');
+        $('.fill:eq(12), .fill:eq(13)').css('background-color', '#952C95');
 
 
         $('.play_button').click(function () {
@@ -72,7 +76,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         });
 
         $(window).resize(function () {
-            //($(window).width() >= 768) ? $('#nav_1').show() : $('#nav_2').show();
             $('main').css('margin-bottom', $('#contact').innerHeight());
         });
 
@@ -96,6 +99,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             e.preventDefault();
 
             const formData = new FormData();
+            formData.append("names", $("#form_names").val());
             formData.append("mail", $("#form_mail").val());
             formData.append("text", $("#form_text").val());
 
@@ -106,8 +110,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 .then(res => res.json())
                 .then(res => {
                     if (res.data)
-                        console.log('wysłano')
-                    else console.log('nie wysłano')
+                        alert('wysłano')
+                    else alert('nie wysłano maila')
                 })
                 .catch(error => console.log("Błąd: ", error));
         })

@@ -257,7 +257,7 @@
       </div>
     </section>
 
-    <section class="container center_box">
+    <section class="container center_box" id="cooperation">
       <h3 class="topic">Współpraca</h3>
       <div class="underline"></div>
       <p class="description description_text">
@@ -407,7 +407,7 @@
       </div>
     </section>
 
-    <section class="container center_box" id="cooperation">
+    <section class="container center_box">
       <h3 class="topic">Proces realizacji projektu</h3>
       <div class="underline"></div>
 
@@ -578,7 +578,7 @@
   <footer id="contact">
     <div class="row">
       <div class="col">
-        <img src="./Photos/Logo/BulpixMedia-01-white.png" alt="logo" />
+        <img src="./Photos/Logo/BulpixMedia-01-white.png" alt="logo" id="logo_contact"/>
       </div>
     </div>
     <div class="row">
@@ -590,8 +590,15 @@
         <div class="row">
           <div class="col">
             <h5>Skontaktuj się z nami</h5>
-            <p>kontakt@bulpixmedia.pl</p>
-            <p>+ 48 510 350 430</p>
+            <p>
+                <a href="mailto:kontakt@bulpixmedia.pl">
+                    <i class="far fa-envelope"></i> kontakt@bulpixmedia.pl</a>
+            </p>
+            <p>
+                <a href="tel:+48 510 350 430"><i class="fas fa-phone-alt"></i> +48 510 350 430</a>
+            </p>
+
+
           </div>
           <div class="col">
             <h5>Nasze biuro</h5>
@@ -607,8 +614,9 @@
         </p>
 
         <form action="">
+          <input type="text" id="form_names" name="names" placeholder="Imię i nazwisko..." />
           <input type="text" id="form_mail" name="mail" placeholder="Twój mail..." />
-          <input type="text" id="form_text" name="text" placeholder="Wiadomość..." />
+          <textarea rows="5" cols="80" id="form_text" placeholder="Wiadomość..."></textarea>
           <button id="sendMessageButton">Wyślij</button>
         </form>
       </div>
