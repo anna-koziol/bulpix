@@ -12,12 +12,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 ($(window).width() >= 768) ? $('#nav_1').show() : $('#nav_2').show();
                 $('#nav_1, #nav_2').css("opacity", 1);
                 //complete load logo in footer
-                $("#logo_contact").one("load", function() {
+                $("#logo_contact").one("load", function () {
                     $('main').css('margin-bottom', $('#contact').innerHeight());
-                  }).each(function() {
-                    if(this.complete) { $(this).trigger('load'); }
-                  });
-                
+                }).each(function () {
+                    if (this.complete) { $(this).trigger('load'); }
+                });
+
             } else {
                 setTimeout(checkLoad, 100);
             }
@@ -25,13 +25,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         checkLoad();
 
-        $('.fill:eq(0), .fill:eq(1)').css('background-color', '#FF2E2E');
-        $('.fill:eq(2), .fill:eq(3)').css('background-color', '#FFB52E');
-        $('.fill:eq(4), .fill:eq(5)').css('background-color', '#FFFF2C');
-        $('.fill:eq(6), .fill:eq(7)').css('background-color', '#2C952C');
-        $('.fill:eq(8), .fill:eq(9)').css('background-color', '#2CFFFF');
-        $('.fill:eq(10), .fill:eq(11)').css('background-color', '#2C2CFF');
-        $('.fill:eq(12), .fill:eq(13)').css('background-color', '#952C95');
+        $('.fill:eq(0), .fill:eq(1)').css('background-color', 'rgb(0,206,255)');
+        $('.fill:eq(2), .fill:eq(3)').css('background-color', 'rgb(0,185,231)');
+        $('.fill:eq(4), .fill:eq(5)').css('background-color', 'rgb(69,130,161)');
+        $('.fill:eq(6), .fill:eq(7)').css('background-color', 'rgb(67,115,153)');
+        $('.fill:eq(8), .fill:eq(9)').css('background-color', 'rgb(46,90,151)');
+        $('.fill:eq(10), .fill:eq(11)').css('background-color', 'rgb(35,58,128)');
+        $('.fill:eq(12), .fill:eq(13)').css('background-color', 'rgb(49,71,94)');
 
 
         $('.play_button').click(function () {
@@ -98,22 +98,37 @@ document.addEventListener("DOMContentLoaded", function (event) {
         $('#sendMessageButton').on('click', (e) => {
             e.preventDefault();
 
-            const formData = new FormData();
-            formData.append("names", $("#form_names").val());
-            formData.append("mail", $("#form_mail").val());
-            formData.append("text", $("#form_text").val());
 
-            fetch("php/PHPMailer/src/sendMessage.php", {
-                method: "post",
-                body: formData,
-            })
-                .then(res => res.json())
-                .then(res => {
-                    if (res.data)
-                        alert('wysłano')
-                    else alert('nie wysłano maila')
+            //Validate e-mail
+            function validateEmail(email) {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            var $error = $("#validate_mail");
+            var email = $("#form_mail").val();
+            $error.text("");
+
+            if (validateEmail(email)) {
+                const formData = new FormData();
+                formData.append("names", $("#form_names").val());
+                formData.append("mail", $("#form_mail").val());
+                formData.append("text", $("#form_text").val());
+
+                fetch("php/PHPMailer/src/sendMessage.php", {
+                    method: "post",
+                    body: formData,
                 })
-                .catch(error => console.log("Błąd: ", error));
+                    .then(res => res.json())
+                    .then(res => {
+                        if (res.data)
+                            alert('wysłano')
+                        else alert('nie wysłano maila')
+                    })
+                    .catch(error => $error.text("Błąd: " + error));
+            } else {
+                $error.text("Błędny mail!");
+            }
         })
     })
 });

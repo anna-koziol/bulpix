@@ -25,7 +25,7 @@ $mail->Port = 587; //port
 $mail->SetLanguage("pl", "phpmailer/language/");
 $mail->Subject = "Nowa wiadomość ze strony Bulpix Media"; //temat
 $mail->Body = 'Pan/Pani: ' . $names . ', o mailu : ' . $email . '  przesłał Ci właśnie wiadomość ze strony Bulpix Media o treści: ' . $text . ' '; //wiadomość
-$mail->AddAddress("pawel.malina1999@gmail.com", "Bulpix Media"); //do kogo leci wiadomość
+$mail->AddAddress("kontakt@bulpixmedia.pl", "Bulpix Media"); //do kogo leci wiadomość
 if ($mail->Send()) //odpowiedź
     echo ('{"data": true}');
 else
