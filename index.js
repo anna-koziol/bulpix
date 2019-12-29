@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         function checkLoad() {
             if (video.readyState === 4) {
                 //complete load video
+                $('#loading').css("zIndex", -15);
                 $('#loading').addClass("slide_display_none");
                 $('body').css('overflow-y', 'scroll');
                 ($(window).width() >= 768) ? $('#nav_1').show() : $('#nav_2').show();
@@ -38,6 +39,27 @@ document.addEventListener("DOMContentLoaded", function (event) {
             let vid = $(this).parent().find('video')[0]
             vid.paused ? vid.play() : vid.pause();
         });
+
+        //SHOWREEL
+        $('#intro_button').click(function () {
+            if (video.muted) {
+                video.load();
+                video.muted = false; 
+                this.innerHTML = '<i class="fas fa-pause"></i>';
+                $('#intro h1, #intro h2').removeClass('puff-in-center');
+                $('#intro h1, #intro h2').addClass('puff-out-center');
+                $('#shadow').css('opacity', 0);
+
+            }
+            else {
+                video.muted = true;
+                this.innerHTML = '<i class="fas fa-play"></i>';
+                $('#intro h1, #intro h2').removeClass('puff-out-center');
+                $('#intro h1, #intro h2').addClass('puff-in-center');
+                $('#shadow').css('opacity', 0.6);
+            }
+        });
+
 
         $(window).scroll(function () {
             var height = $(window).scrollTop();
