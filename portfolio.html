@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Bulpix Media</title>
     <link rel="icon" href="./Photos/Logo/BulpixMedia-01.png" />
-    <script defer src="fontawesome-free-5.12.0-web/js/all.js"></script>
+    <script defer src="./fontawesome-free-5.12.0-web/js/all.js"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
         integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
 
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="porfolio.css" />
+    <link rel="stylesheet" href="./css/style.css" type="text/css" />
+    <link rel="stylesheet" href="./css/portfolio.css" type="text/css"/>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -25,72 +25,74 @@
         integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
 
-    <script src="porfolio.css"></script>
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/portfolio.js"></script>
 </head>
 
 <body>
-    <!--
-  <nav class="navbar navbar-light navbar-expand-md" id="nav_1">
-    <section id="menu1">
-      <div class="menu_box">
-        <a href="mailto:kontakt@bulpixmedia.pl">
-          <i class="far fa-envelope"></i> kontakt@bulpixmedia.pl</a>
-        <a href="tel:+48 510 350 430"><i class="fas fa-phone-alt"></i> +48 510 350 430</a>
-      </div>
+    <nav class="navbar navbar-light navbar-expand-md" id="nav_1">
+        <section id="menu1">
+            <div class="menu_box">
+                <a href="mailto:kontakt@bulpixmedia.pl">
+                    <i class="far fa-envelope"></i> kontakt@bulpixmedia.pl</a>
+            </div>
 
-      <div class="menu_box">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-    </section>
-    <section id="menu2">
-      <a class="navbar-brand quotes">
-        <img src="./Photos/Logo/BulpixMedia-01.png" width="60" height="60" class="d-inline-block" alt="logo" />
-      </a>
-      <div class="collapse navbar-collapse">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="#about_us">O nas</a>
-          <a class="nav-item nav-link" href="#portfolio">Porfolio</a>
-          <a class="nav-item nav-link" href="#cooperation">Współpraca</a>
-          <a class="nav-item nav-link" href="#main_end">Kontakt</a>
+            <div class="menu_box">
+                <a href="tel:+48 510 350 430"><i class="fas fa-phone-alt"></i> +48 510 350 430</a>
+                <a href="tel:+48 505 061 484"><i class="fas fa-phone-alt"></i> +48 505 061 484</a>
+            </div>
+        </section>
+        <section id="menu2">
+            <div class="icon_menu">
+                <a class="navbar-brand quotes" href="#">
+                    <img src="./Photos/Logo/BulpixMedia-01.png" width="60" height="60" class="d-inline-block"
+                        alt="logo" />
+                </a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="./index.html">Strona główna</a>
+                    <a class="nav-item nav-link" href="#about_us">Współpraca</a>
+                    <a class="nav-item nav-link" href="#portfolio">Porfolio</a>
+                    <a class="nav-item nav-link" href="#main_end">Kontakt</a>
+                </div>
+            </div>
+        </section>
+    </nav>
+
+    <nav class="navbar navbar-expand-md navbar-light" id="nav_2">
+        <a class="navbar-brand quotes" href="#">
+            <img src="./Photos/Logo/BulpixMedia-01.png" width="60" height="60" class="d-inline-block" alt="logo" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="./index.html">Strona główna</a>
+                <a class="nav-item nav-link" href="#about_us">Współpraca</a>
+                <a class="nav-item nav-link" href="#portfolio">Porfolio</a>
+                <a class="nav-item nav-link" href="#main_end">Kontakt</a>
+            </div>
         </div>
-      </div>
-    </section>
-  </nav>
-
-  <nav class="navbar navbar-expand-md navbar-light" id="nav_2">
-    <a class="navbar-brand quotes">
-      <img src="./Photos/Logo/BulpixMedia-01.png" width="60" height="60" class="d-inline-block" alt="logo" />
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="#about_us">O nas</a>
-        <a class="nav-item nav-link" href="#portfolio">Porfolio</a>
-        <a class="nav-item nav-link" href="#cooperation">Współpraca</a>
-        <a class="nav-item nav-link" href="#main_end">Kontakt</a>
-      </div>
-    </div>
-  </nav>
-
-
-  <section id="loading_portfolio" class="container-fluid center_box">
-    <img src="./Photos/Logo/BulpixMedia-01.png" alt="logo" />
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </section>
-  -->
+    </nav>
 
     <main>
+        <section class="container center_box" id="about_us">
+            <h3 class="topic">Zapraszamy do współpracy</h3>
+            <div class="underline"></div>
+            <p class="description description_text">
+                Wszechstronność to nasze drugie imię. Dzięki kompleksowemu podejściu realizujemy projekty o różnej
+                tematyce, począwszy od wywiadów, przez teledyski aż po filmy reklamowe. Serdecznie zapraszamy do
+                kontaktu mailowego, telefonicznego lub poprzez formularz na naszej stronie.
+            </p>
+        </section>
+
         <section class="container-fluid center_box" id="portfolio">
             <h3 class="topic">Zobacz wybrane realizacje</h3>
             <div class="underline"></div>
@@ -201,35 +203,101 @@
                     </div>
                     <img src="./Photos/Portfolio/wahid-khene-iKdQCIiSMlQ-unsplash.jpg" alt="" />
                 </div>
+                <div class="col-12 col-md-6 col-lg-3 porfolio_img align-self-center">
+                    <div class="porfolio_img_description">
+                        <h4>Projekt I</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Curabitur consectetur ante quis tincidunt accumsan.
+                        </p>
+
+                        <button type="button" data-toggle="modal" data-target="#modal1">
+                            Zobacz
+                        </button>
+                    </div>
+                    <img src="./Photos/Portfolio/jakob-owens-0Xl9HAf0RyE-unsplash.jpg" alt="" />
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 porfolio_img align-self-center">
+                    <div class="porfolio_img_description">
+                        <h4>Projekt J</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Curabitur consectetur ante quis tincidunt accumsan.
+                        </p>
+                        <button type="button" data-toggle="modal" data-target="#modal2">
+                            Zobacz
+                        </button>
+                    </div>
+                    <img src="./Photos/Portfolio/jakob-owens-9pRbuWJ6TvQ-unsplash.jpg" alt="" />
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 porfolio_img align-self-center">
+                    <div class="porfolio_img_description">
+                        <h4>Projekt K</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Curabitur consectetur ante quis tincidunt accumsan.
+                        </p>
+                        <button type="button" data-toggle="modal" data-target="#modal1">
+                            Zobacz
+                        </button>
+                    </div>
+                    <img src="./Photos/Portfolio/jakob-owens-ZOtnmYS0JVg-unsplash.jpg" alt="" />
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 porfolio_img align-self-center">
+                    <div class="porfolio_img_description">
+                        <h4>Projekt L</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Curabitur consectetur ante quis tincidunt accumsan.
+                        </p>
+                        <button type="button" data-toggle="modal" data-target="#modal2">
+                            Zobacz
+                        </button>
+                    </div>
+                    <img src="./Photos/Portfolio/keagan-henman-pPxJTtxfV1A-unsplash.jpg" alt="" />
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 porfolio_img align-self-center">
+                    <div class="porfolio_img_description">
+                        <h4>Projekt M</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Curabitur consectetur ante quis tincidunt accumsan.
+                        </p>
+                        <button type="button" data-toggle="modal" data-target="#modal2">
+                            Zobacz
+                        </button>
+                    </div>
+                    <img src="./Photos/Portfolio/keagan-henman-pPxJTtxfV1A-unsplash.jpg" alt="" />
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3 porfolio_img align-self-center">
+                    <div class="porfolio_img_description">
+                        <h4>Projekt N</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Curabitur consectetur ante quis tincidunt accumsan.
+                        </p>
+                        <button type="button" data-toggle="modal" data-target="#modal2">
+                            Zobacz
+                        </button>
+                    </div>
+                    <img src="./Photos/Portfolio/wahid-khene-iKdQCIiSMlQ-unsplash.jpg" alt="" />
+                </div>
             </div>
         </section>
-
-        <section class="container center_box" id="about_us">
-            <h3 class="topic">Zapraszamy do współpracy</h3>
-            <div class="underline"></div>
-            <p class="description description_text">
-                Wszechstronność to nasze drugie imię. Dzięki kompleksowemu podejściu realizujemy projekty o różnej
-                tematyce, począwszy od wywiadów, przez teledyski aż po filmy reklamowe. Serdecznie zapraszamy do
-                kontaktu mailowego, telefonicznego lub poprzez formularz na naszej stronie.
-            </p>
-        </section>
-
+        <section id="main_end"></section>
     </main>
 
     <footer id="contact">
         <div class="row">
-            <div class="col">
-                <img src="./Photos/Logo/BulpixMedia-01-white.png" alt="logo" id="logo_contact" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-6">
-                <h2>
-                    Jesteśmy studiem filmowym z Krakowa tworzącym filmy najwyższej
-                    jakości. Zapraszamy do współpracy!
-                </h2>
+            <div class="col-sm-12 col-md-6 space_between">
                 <div class="row">
                     <div class="col">
+                        <h2>
+                            Jesteśmy studiem filmowym z Krakowa tworzącym filmy najwyższej
+                            jakości. Zapraszamy do współpracy!
+                        </h2>
+
                         <h5>Skontaktuj się z nami</h5>
                         <p>
                             <a href="mailto:kontakt@bulpixmedia.pl">
@@ -238,12 +306,14 @@
                         <p>
                             <a href="tel:+48 510 350 430"><i class="fas fa-phone-alt"></i> +48 510 350 430</a>
                         </p>
-
-
+                        <p>
+                            <a href="tel:+48 505 061 484"><i class="fas fa-phone-alt"></i>+48 505 061 484</a>
+                        </p>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col">
-                        <h5>Nasze biuro</h5>
-                        <p>Kraków, Polska</p>
+                        <img src="./Photos/Logo/BulpixMedia-01-w.png" alt="logo" id="logo_contact" />
                     </div>
                 </div>
             </div>
@@ -267,7 +337,7 @@
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
         </div>
     </footer>
 

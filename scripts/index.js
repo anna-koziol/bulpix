@@ -1,7 +1,6 @@
-
 document.addEventListener("DOMContentLoaded", function (event) {
     $(document).ready(function () {
-        console.log("Podłączono")
+        console.log("Podłączono index.js")
         var video = document.getElementById("vid");
 
         function checkLoad() {
@@ -34,24 +33,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
         $('.fill:eq(10), .fill:eq(11)').css('background-color', 'rgb(35,58,128)');
         $('.fill:eq(12), .fill:eq(13)').css('background-color', 'rgb(49,71,94)');
 
-
-        $('.play_button').click(function () {
-            let vid = $(this).parent().find('video')[0]
-            vid.paused ? vid.play() : vid.pause();
-        });
-
         //SHOWREEL
         $('#intro_button').click(function () {
             if (video.muted) {
+                $('footer').css('opacity', 0);
                 video.load();
-                video.muted = false; 
+                video.muted = false;
                 this.innerHTML = '<i class="fas fa-pause"></i>';
                 $('#intro h1, #intro h2').removeClass('puff-in-center');
                 $('#intro h1, #intro h2').addClass('puff-out-center');
                 $('#shadow').css('opacity', 0);
-
             }
             else {
+                $('footer').css('opacity', 1);
                 video.muted = true;
                 this.innerHTML = '<i class="fas fa-play"></i>';
                 $('#intro h1, #intro h2').removeClass('puff-out-center');
@@ -63,10 +57,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         $(window).scroll(function () {
             var height = $(window).scrollTop();
-            var window_height = $(window).height();
-            var menu_height = $('#menu1').innerHeight();
-            (height > window_height) ? $('footer').css("zIndex", -9) : $('footer').css("zIndex", -11);
-            (height > menu_height) ? $('#menu1').addClass('hideNav') : $('#menu1').removeClass('hideNav');
 
             //ANIMATION TO PROGRESSBAR
             let circle_row_1_t = $("#circle_row_1").offset().top;
@@ -94,64 +84,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 $(".mask.full7, .fill7").addClass('circle7_aniamte');
             }
 
-
         });
-
-        $(window).resize(function () {
-            $('main').css('margin-bottom', $('#contact').innerHeight());
-        });
-
-        $('.close').click(function () {
-            var videos = $('.portfolio_vid')
-            for (let i = 0; i < videos.length; i++) {
-                videos[i].load();
-            }
-        });
-
-        //changed display from block to flex when modal is open
-        $('#modal1').on('shown.bs.modal', () => {
-            $('#modal1').css('display', 'flex')
-        });
-        $('#modal2').on('shown.bs.modal', () => {
-            $('#modal2').css('display', 'flex')
-        });
-
-        //send message 
-        $('#sendMessageButton').on('click', (e) => {
-            e.preventDefault();
-
-
-            //Validate e-mail
-            function validateEmail(email) {
-                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                return re.test(String(email).toLowerCase());
-            }
-
-            var $error = $("#validate_mail");
-            var email = $("#form_mail").val();
-            $error.text("");
-
-            if (validateEmail(email)) {
-                const formData = new FormData();
-                formData.append("names", $("#form_names").val());
-                formData.append("mail", $("#form_mail").val());
-                formData.append("text", $("#form_text").val());
-
-                fetch("php/PHPMailer/src/sendMessage.php", {
-                    method: "post",
-                    body: formData,
-                })
-                    .then(res => res.json())
-                    .then(res => {
-                        if (res.data)
-                            alert('wysłano')
-                        else alert('nie wysłano maila')
-                    })
-                    .catch(error => $error.text("Błąd: " + error));
-            } else {
-                $error.text("Błędny mail!");
-            }
-        })
     })
 });
 

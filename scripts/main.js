@@ -1,27 +1,11 @@
-
 document.addEventListener("DOMContentLoaded", function (event) {
     $(document).ready(function () {
-        console.log("Podłączono")
-        
-        $("#logo_contact").one("load", function () {
-            $('main').css('margin-bottom', $('#contact').innerHeight());
-        }).each(function () {
-            if (this.complete) { $(this).trigger('load'); }
-        }); 
+        console.log("Podłączono main.js")
 
+        // Play/stop videos in modals
         $('.play_button').click(function () {
             let vid = $(this).parent().find('video')[0]
             vid.paused ? vid.play() : vid.pause();
-        });
-
-        $(window).scroll(function () {
-            var height = $(window).scrollTop();
-            var menu_height = $('#menu1').innerHeight();
-            (height > menu_height) ? $('#menu1').addClass('hideNav') : $('#menu1').removeClass('hideNav');
-        });
-
-        $(window).resize(function () {
-            $('main').css('margin-bottom', $('#contact').innerHeight());
         });
 
         $('.close').click(function () {
@@ -30,8 +14,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 videos[i].load();
             }
         });
-
-        //changed display from block to flex when modal is open
+        // Change display from block to flex when modal is open
         $('#modal1').on('shown.bs.modal', () => {
             $('#modal1').css('display', 'flex')
         });
@@ -39,12 +22,30 @@ document.addEventListener("DOMContentLoaded", function (event) {
             $('#modal2').css('display', 'flex')
         });
 
-        //send message 
+        // Page scroll - actions
+        $(window).scroll(function () {
+            var height = $(window).scrollTop();
+            var window_height = $(window).height();
+            var menu_height = $('#menu1').innerHeight();
+            if (height > window_height) {
+                $('footer').css('opacity', 1);
+                $('footer').css("zIndex", -9)
+            }
+            else {
+                $('footer').css("zIndex", -11)
+            }
+            (height > menu_height) ? $('#menu1').addClass('hideNav') : $('#menu1').removeClass('hideNav');
+        });
+
+        $(window).resize(function () {
+            $('main').css('margin-bottom', $('#contact').innerHeight());
+        });
+
+
+        // Send message 
         $('#sendMessageButton').on('click', (e) => {
             e.preventDefault();
-
-
-            //Validate e-mail
+            // Validate e-mail
             function validateEmail(email) {
                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(String(email).toLowerCase());
