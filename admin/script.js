@@ -40,7 +40,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
     const send = () => {
-
+        $("#toast").removeClass('fade-out-top');
+        $("#toast").removeClass('fade-in-top');
         var file_data = $('#add_Photo').prop('files')[0];
         var form_data = new FormData();
         form_data.append('photo', file_data);
@@ -53,7 +54,21 @@ document.addEventListener("DOMContentLoaded", function (event) {
             contentType: false,
             data: form_data
         })
-            .done(res => console.log(res));
+            .done(res =>
+                toast(res)
+            );
+    }
+
+    const toast = (text) => {
+        $("#toast_des").html(' ');
+        $("#toast_des").html(text);
+        $("#toast").addClass('fade-in-top');
+        setTimeout(function () { $("#toast").addClass('fade-out-top') }, 3500);
+        $("input, textarea").val(' ');
+        //$('#add_Photo').replaceWith($('#add_Photo').clone());
+        $('#form_add').reset()
+        //DODAĆ RESET INPUT FILE!!!!
+
     }
 
 });

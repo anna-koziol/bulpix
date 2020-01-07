@@ -36,24 +36,21 @@ if ($todo == "add") {
     if (isset($_POST["submit"])) {
         $check = getimagesize($_FILES["photo"]["tmp_name"]);
         if ($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
+            echo "Plik to zdjęcie - " . $check["mime"] . ".";
             $uploadOk = 1;
         } else {
-            echo "File is not an image.";
+            echo "Plik nie jest zdjęciem";
             $uploadOk = 0;
         }
     }
     // Check if file already exists
     if (file_exists($target_file)) { 
-
-        echo "Sorry, file already exists.";
-        //echo (json_encode({"Message": "aaa"}););
-
+        echo "Plik już istnieje w bazie";
         $uploadOk = 0;
     }
     // Check file size
     if ($_FILES["photo"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
+        echo "Plik jest za duży";
         $uploadOk = 0;
     }
     // Allow certain file formats
@@ -61,18 +58,18 @@ if ($todo == "add") {
         $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif"
     ) {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        echo "Dozwolone rozszerzenia pliku: JPG, JPEG, PNG & GIF";
         $uploadOk = 0;
     }
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
+        //echo "Niestety zdjęcie nie zostało dodane";
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
-            echo "The file " . basename($_FILES["photo"]["name"]) . " has been uploaded.";
+            echo "Plik " . basename($_FILES["photo"]["name"]) . " został wgrany";
         } else {
-            echo "Sorry, there was an error uploading your file.";
+            echo "Podczas wgrywania pliku wystąpił błąd";
         }
     }
 }
