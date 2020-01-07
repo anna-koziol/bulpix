@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins|Roboto&display=swap");
+* {
+    margin: 0;
+}
+
+body {
+    font-family: "Poppins", sans-serif !important;
+    background-image: linear-gradient(to top, #48c6ef 0%, #0087be 100%);
+    overflow-x: hidden;
+}
+
+.login_panel {
+    background-image: linear-gradient(to top, #48c6ef 0%, #0087be 100%);
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: -100;
+}
+
+.align_vertically {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+}
+
+.login_form, #add_new form {
+    border: 1px solid white;
+    border-radius: 5px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5%;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+input, textarea {
+    padding: 10px !important;
+    background: transparent !important;
+    border: 0px solid #0087be !important;
+    border-bottom: 1px solid #0087be !important;
+    margin: 10px !important;
+    width: 90%;
+}
+
+.login_panel img {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #0087be;
+    border-radius: 100%;
+    margin: 10%;
+}
+
+.login_panel h1 {
+    font-size: 1.5em;
+    padding: 10px;
+    font-weight: bold;
+}
+
+button {
+    text-transform: uppercase !important;
+    color: white;
+    background-size: 200% auto;
+    box-shadow: 0 0 5px rgb(211, 210, 210);
+    border: 0px solid #0087be;
+    border-radius: 20px !important;
+    padding: 10px;
+    background-image: linear-gradient(to top, #48c6ef 0%, #0087be 100%);
+    width: 90%;
+    margin: 10% !important;
+}
+
+button:focus {
+    outline: 0;
+}
+
+button:hover {
+    background: #0087be;
+    transition: all 0.5s ease-in-out !important;
+    cursor: pointer;
+}
+
+.login_form p {
+    color: #0087be;
+    font-size: 0.7em;
+    cursor: pointer;
+}
+
+.alerts {
+    color: rgb(214, 19, 19) !important;
+    font-weight: bold;
+}
+
+.fade-out {
+    -webkit-animation: fade-out 1s ease-out both;
+    animation: fade-out 1s ease-out both;
+}
+
+@-webkit-keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+#add_new {
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+}
+
+#add_new button {
+    width: 50%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+#add_new form {
+    max-height: 90vh;
+}
+
+#add_new h2 {
+    font-size: 1.3em;
+    color: #48c6ef;
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+}
+
+.menu a {
+    font-weight: bold;
+    font-size: 20px;
+    color: #0087be;
+    padding: 10px;
+}
+
+.menu a:hover, .fa-sign-out-alt:hover {
+    color: #48c6ef;
+}
+
+.menu {
+    background-color: white;
+    width: fit-content;
+    display: inline-block;
+    border-bottom-right-radius: 5px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 5 !important;
+    border-bottom: 1px solid rgb(233, 233, 233);
+    border-right: 1px solid rgb(233, 233, 233);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+
+}
+
+.fa-sign-out-alt {
+    color: #f7cb15;
+}
