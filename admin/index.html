@@ -1,71 +1,110 @@
 <!DOCTYPE html>
 <html lang="pl">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Bulpix Media - Admin</title>
 
     <script src="./script.js"></script>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css" />
     <script defer src="../fontawesome-free-5.12.0-web/js/all.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-        crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+      integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+      integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+      integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <section class="login_panel align_vertically">
-        <div class="login_form">
-            <img src="./Photos/BulpixMedia-01.jpg" alt="logo">
-            <h1>Logowanie</h1>
-            <form action="#" method="post" class="align_vertically">
-                <input type="text" placeholder="Login" name="login" required id="loginLogin">
-                <input type="password" placeholder="Hasło" name="psw" required id="loginPassword">
-                <button type="submit" id="loginButton" name="submit">ZALOGUJ</button>
-            </form>
+      <div class="login_form">
+        <img src="./Photos/BulpixMedia-01.jpg" alt="logo" />
+        <h1>Logowanie</h1>
+        <form action="#" method="post" class="align_vertically">
+          <input
+            type="text"
+            placeholder="Login"
+            name="login"
+            required
+            id="loginLogin"
+          />
+          <input
+            type="password"
+            placeholder="Hasło"
+            name="psw"
+            required
+            id="loginPassword"
+          />
+          <button type="submit" id="loginButton" name="submit">ZALOGUJ</button>
+        </form>
 
-            <p id="alerts_login" class="alerts"></p>
-        </div>
+        <p id="alerts_login" class="alerts"></p>
+      </div>
     </section>
     <main>
-        <div class="menu">
-            <a href="#"><i class="fas fa-plus"></i></a>
-            <a href="#"><i class="far fa-edit"></i></a>
-            <a href="#"><i class="far fa-trash-alt"></i></a>
-            <a href="#"><i class="fas fa-sign-out-alt"></i></a>
+      <div class="menu">
+        <a href="#"><i class="fas fa-plus"></i></a>
+        <a href="#"><i class="far fa-edit"></i></a>
+        <a href="#"><i class="far fa-trash-alt"></i></a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i></a>
+      </div>
+      <section id="add_new" class="align_vertically">
+        <div class="container">
+          <form
+            action=""
+            enctype="multipart/form-data"
+            class="align_vertically"
+            method="POST"
+          >
+            <h2>Dodaj element do porfolio</h2>
+            <input
+              type="text"
+              name="pname"
+              placeholder="Nazwa projektu..."
+              id="add_Name"
+            />
+            <textarea
+              rows="5"
+              cols="80"
+              id="add_Des"
+              placeholder="Opis projektu..."
+            ></textarea>
+            <p>Miniaturka - zdjęcie</p>
+            <input
+              type="file"
+              name="add_Photo"
+              accept="image/*"
+              id="add_Photo"
+            />
+            <p>Video</p>
+            <input
+              type="file"
+              name="add_Video"
+              accept="video/*"
+              id="add_Video"
+            />
+            <button id="add_Button" name="add_Button">Dodaj</button>
+          </form>
         </div>
-        <section id="add_new" class="align_vertically">
-            <div class="container">
-                <form action="" enctype="multipart/form-data" class="align_vertically" method="POST">
-                    <h2>Dodaj element do porfolio</h2>
-                    <input type="text" name="pname" placeholder="Nazwa projektu..." id="add_Name">
-                    <textarea rows="5" cols="80" id="add_Des" placeholder="Opis projektu..."></textarea>
-                    <p>Miniaturka - zdjęcie</p>
-                    <input type="file" name="add_Photo" accept="image/*" id="add_Photo">
-                    <p>Video</p>
-                    <input type="file" name="add_Video" accept="video/*" id="add_Video">
-                    <button id="add_Button" name="add_Button">Dodaj</button>
-                </form>
-            </div>
-        </section>
-
+      </section>
     </main>
-
-
-
-</body>
-
+  </body>
 </html>

@@ -33,21 +33,28 @@ document.addEventListener("DOMContentLoaded", function (event) {
         console.log($("#add_Photo").val())
         console.log($("#add_Video").val())
 
+
+        send();
+
+    })
+
+
+    const send = () => {
+
         var file_data = $('#add_Photo').prop('files')[0];
         var form_data = new FormData();
         form_data.append('photo', file_data);
         form_data.append('todo', 'add')
 
-        fetch("./PHP/index.php", {
+        $.ajax({
+            url: "./PHP/index.php",
             method: "post",
-            body: form_data
+            processData: false,
+            contentType: false,
+            data: form_data
         })
-            .then(res => {
-                console.log('res');
-                console.log(res.body);
-            })
-    })
-
+            .done(res => console.log(res));
+    }
 
 });
 
