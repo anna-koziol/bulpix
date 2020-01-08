@@ -30,7 +30,7 @@ body {
     justify-content: center;
 }
 
-.login_form, #add_new form {
+.login_form {
     border: 1px solid white;
     border-radius: 5px;
     background: white;
@@ -128,6 +128,7 @@ button:hover {
     height: 100vh;
     position: absolute;
     top: 0;
+    background: white;
 }
 
 #add_new button {
@@ -136,10 +137,6 @@ button:hover {
     margin-right: 0 !important;
     margin-top: 10px !important;
     margin-bottom: 10px !important;
-}
-
-#add_new form {
-    max-height: 90vh;
 }
 
 #add_new h2 {
@@ -155,26 +152,24 @@ main {
 .menu a {
     font-weight: bold;
     font-size: 20px;
-    color: #0087be;
+    color: white;
     padding: 10px;
 }
 
 .menu a:hover, .fa-sign-out-alt:hover {
-    color: #48c6ef;
+    color: #f7cb15;
 }
 
 .menu {
-    background-color: white;
-    width: fit-content;
-    display: inline-block;
-    border-bottom-right-radius: 5px;
+    background-image: linear-gradient(to top, #48c6ef 0%, #36bfec 100%);
     position: sticky;
     top: 0;
     left: 0;
     z-index: 5 !important;
-    border-bottom: 1px solid rgb(233, 233, 233);
-    border-right: 1px solid rgb(233, 233, 233);
+    border-bottom: 1px solid #36bfec;
+    border-right: 1px solid #36bfec;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    padding: 5px;
 }
 
 .fa-sign-out-alt {
@@ -280,4 +275,15 @@ main {
         transform: translateY(-50px);
         opacity: 0;
     }
+}
+
+.custom-file-label::after {
+    background-color: #48c6ef !important;
+    color: white !important;
+    content: "Przeglądaj" !important;
+}
+
+.custom-file {
+    margin-bottom: 10px  !important;
+    width: 90% !important;
 }

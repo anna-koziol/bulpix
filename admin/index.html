@@ -14,7 +14,7 @@
   <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script> -->
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
     integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" />
@@ -54,10 +54,19 @@
           <input type="text" name="pname" placeholder="Nazwa projektu..." id="add_Name" />
           <textarea rows="5" cols="80" id="add_Des" placeholder="Opis projektu..."></textarea>
           <p>Miniaturka - zdjęcie</p>
-          <input type="file" name="add_Photo" accept="image/*" id="add_Photo" />
+          <div class="custom-file" id="input_image">
+            <!-- <input type="file" class="custom-file-input" name="add_Photo" accept="image/*" id="add_Photo">
+            <label class="custom-file-label" for="add_Photo"  id="label_P">Wybierz plik...</label> -->
+          </div>
           <p>Video</p>
-          <input type="file" name="add_Video" accept="video/*" id="add_Video" />
+          <div class="custom-file" id="input_video">
+            <!-- <input type="file" class="custom-file-input" name="add_Video" id="add_Video">
+            <label class="custom-file-label" for="add_Video"  id="label_V">Wybierz plik...</label> -->
+          </div>
           <button id="add_Button" name="add_Button">Dodaj</button>
+
+
+
         </form>
       </div>
     </section>

@@ -2,6 +2,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
     $(document).ready(function () {
         console.log("Podłączono main.js")
 
+        $('.navbar-nav').find('a').click(function () {
+            var $href = $(this).attr('href');
+            var $anchor = $($href).offset();
+            $(window).scrollTop($anchor.top - 50);
+            return false;
+        });
+
         // Play/stop videos in modals
         $('.play_button').click(function () {
             let vid = $(this).parent().find('video')[0]

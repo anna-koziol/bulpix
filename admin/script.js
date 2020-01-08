@@ -1,6 +1,9 @@
 var licznik = 1;
 
 document.addEventListener("DOMContentLoaded", function (event) {
+
+    addInputs();
+
     console.log("DOM fully loaded and parsed");
 
     $('#loginButton').on('click', (e) => {
@@ -28,57 +31,72 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     $('#add_Button').on('click', (e) => {
         e.preventDefault();
-        console.log($("#add_Name").val())
-        console.log($("#add_Des").val())
-        console.log($("#add_Photo").val())
-        console.log($("#add_Video").val())
-
-
         send();
-
     })
 
 
     const send = () => {
         $("#toast").removeClass('fade-out-top');
         $("#toast").removeClass('fade-in-top');
-        var file_data = $('#add_Photo').prop('files')[0];
+        var file_photo = $('#add_Photo').prop('files')[0];
+        var file_video = $('#add_Video').prop('files')[0];
         var form_data = new FormData();
-        form_data.append('photo', file_data);
-        form_data.append('todo', 'add')
+        form_data.append('photo', file_photo);
+        form_data.append('video', file_video);
+        form_data.append('name', $('#add_Name').val());
+        form_data.append('desc', $('#add_Des').val());
 
-        $.ajax({
-            url: "./PHP/index.php",
-            method: "post",
-            processData: false,
-            contentType: false,
-            data: form_data
-        })
-            .done(res =>
-                toast(res)
-            );
+        form_data.append('todo', 'add')
+        console.log('x', $('#add_Name').val())
+
+        if (file_photo != undefined && file_video != undefined && $('#add_Name').val() != '' && $('#add_Des').val() != '') {
+            $.ajax({
+                url: "./PHP/index.php",
+                method: "post",
+                processData: false,
+                contentType: false,
+                data: form_data
+            })
+                .done(res =>
+                    toast(res)
+                );
+        }
+        else {
+            toast(' Wprowadź wszystkie pola w formularzu! ')
+        }
+
+
+
     }
 
     const toast = (text) => {
+        $('#input_video').empty();
+        $('#input_image').empty();
+        addInputs();
+        onInputChange();
+
         $("#toast_des").html(' ');
         $("#toast_des").html(text);
         $("#toast").addClass('fade-in-top');
         setTimeout(function () { $("#toast").addClass('fade-out-top') }, 3500);
-        $("input, textarea").val(' ');
-        //$('#add_Photo').replaceWith($('#add_Photo').clone());
-        $('#form_add').reset()
-        //DODAĆ RESET INPUT FILE!!!!
-
+        $("input, textarea").val('');
     }
-
+    onInputChange();
 });
 
+function onInputChange() {
+    $('#add_Video, #add_Photo').on('change', function () {
+        var fileName = $(this).val();
+        console.log($(this));
+        console.log($('#add_Video'));
+        $(this).next('.custom-file-label').html(fileName);
+    });
+}
 
-
-
-
-
-
-
-
+function addInputs() {
+    $('#input_video').append(`<input type="file" class="custom-file-input" name="add_Video" id="add_Video">
+    <label class="custom-file-label" for="add_Video"  id="label_V">Wybierz plik...</label>`);
+    $('#input_image').append(`<input type="file" class="custom-file-input" name="add_Photo" accept="image/*" id="add_Photo">
+    <label class="custom-file-label" for="add_Photo"  id="label_P">Wybierz plik...</label>`);
+}
 

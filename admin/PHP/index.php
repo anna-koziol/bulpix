@@ -1,11 +1,12 @@
 <?php
 $todo = $_POST['todo'];
+$base = 'mysql:dbname=bulpix;host=localhost';
+$root = 'root';
+$password = '';
+$video  = false;
+$photo  = false;
 
 if ($todo == "login") {
-    $base = 'mysql:dbname=bulpix;host=localhost';
-    $root = 'root';
-    $password = '';
-
     try {
         $db = new PDO($base, $root, $password);
         $db->exec("set names utf8");
@@ -28,48 +29,78 @@ if ($todo == "login") {
 }
 
 if ($todo == "add") {
-    $target_dir = "../../Photos/Portfolio/";
-    $target_file = $target_dir . basename($_FILES["photo"]["name"]);
+    $target_dirP = "../../Photos/Portfolio/";
+    $target_fileP = $target_dirP . basename($_FILES["photo"]["name"]);
+    $imageFileTypeP = strtolower(pathinfo($target_fileP, PATHINFO_EXTENSION));
+    if (
+        $imageFileTypeP != "jpg" && $imageFileTypeP != "png" && $imageFileTypeP != "jpeg"
+        && $imageFileTypeP != "gif"
+    ) {
+        echo "Dozwolone rozszerzenia pliku: JPG, JPEG, PNG & GIF ";
+    } else {
+        upload($target_fileP, $_FILES["photo"], "zdjeciem");
+    }
+
+    $target_dirV = "../../Photos/Video/";
+    $target_fileV = $target_dirV . basename($_FILES["video"]["name"]);
+    $imageFileTypeV = strtolower(pathinfo($target_fileV, PATHINFO_EXTENSION));
+    if (
+        $imageFileTypeV != "mp4" && $imageFileTypeV != "ogg" && $imageFileTypeV != "MPEG"
+        && $imageFileTypeV != "WebM"
+    ) {
+        echo "Dozwolone rozszerzenia pliku: MP4, OGG, MPEG & WebM ";
+    } else {
+        upload($target_fileV, $_FILES["video"], "filmem");
+    }
+
+    //Jesli  wgrało się video i photo - append do bazy danych
+    if ($video && $photo) {
+        try {
+            $db = new PDO($base, $root, $password);
+            $db->exec("set names utf8");
+
+            $name = $_POST['name'];
+            $desc = $_POST['desc'];
+
+            $query = "INSERT into `portfolio` values ('','$name','$desc','$target_fileP','$target_fileV')";
+            $result = $db->query($query);
+        } catch (PDOException $e) {
+            echo 'Connection failed: ' . $e->getMessage();
+        }
+    }
+}
+
+function upload($target_file, $elem, $type)
+{
     $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    // Check if image file is a actual image or fake image
+    global $video, $photo;
     if (isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["photo"]["tmp_name"]);
+        $check = getimagesize($elem["tmp_name"]);
         if ($check !== false) {
-            echo "Plik to zdjęcie - " . $check["mime"] . ".";
+            echo "Plik " . basename($elem["name"]) . " jest " . $type . " - " . $check["mime"] . ". ";
             $uploadOk = 1;
         } else {
-            echo "Plik nie jest zdjęciem";
+            echo "Plik " . basename($elem["name"]) . " nie jest" . $type . "  ";
             $uploadOk = 0;
         }
     }
-    // Check if file already exists
-    if (file_exists($target_file)) { 
-        echo "Plik już istnieje w bazie";
+    if (file_exists($target_file)) {
+        echo "Plik  " . basename($elem["name"]) . " już istnieje w bazie. ";
         $uploadOk = 0;
     }
-    // Check file size
-    if ($_FILES["photo"]["size"] > 500000) {
-        echo "Plik jest za duży";
-        $uploadOk = 0;
-    }
-    // Allow certain file formats
-    if (
-        $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif"
-    ) {
-        echo "Dozwolone rozszerzenia pliku: JPG, JPEG, PNG & GIF";
-        $uploadOk = 0;
-    }
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        //echo "Niestety zdjęcie nie zostało dodane";
-        // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
-            echo "Plik " . basename($_FILES["photo"]["name"]) . " został wgrany";
+
+    if ($uploadOk == 1) {
+        if (move_uploaded_file($elem["tmp_name"], $target_file)) {
+            echo "Plik " . basename($elem["name"]) . " został wgrany. ";
+            if ($elem == $_FILES["video"]) {
+                $video = true;
+            } else {
+                $photo = true;
+            }
         } else {
-            echo "Podczas wgrywania pliku wystąpił błąd";
+            echo "Podczas wgrywania pliku " . basename($elem["name"]) . " wystąpił błąd. ";
         }
+    } else {
+        echo " Spróbuj jeszcze raz ";
     }
 }
