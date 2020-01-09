@@ -64,9 +64,25 @@
             <label class="custom-file-label" for="add_Video"  id="label_V">Wybierz plik...</label> -->
           </div>
           <button id="add_Button" name="add_Button">Dodaj</button>
+        </form>
+      </div>
+    </section>
 
+    <section id="edit" class="align_vertically">
+      <div class="container">
+        <form action="" enctype="multipart/form-data" class="align_vertically" method="POST" id="form_edit">
+          <h2>Edytuj element z porfolio</h2>
+          <p>Wybierz element z listy</p>
+    
+          <select class="custom-select mb-3" id="edit_selct"></select>
 
-
+          <input type="text" name="pnameEdit" placeholder="Nazwa projektu..." id="edit_Name" />
+          <textarea rows="5" cols="80" id="edit_Des" placeholder="Opis projektu..."></textarea>
+          <p>Miniaturka - zdjęcie</p>
+          <div class="custom-file" id="input_image_edit"></div>
+          <p>Video</p>
+          <div class="custom-file" id="input_video_edit"></div>
+          <button id="edit_Button" name="edit_Button">Edytuj</button>
         </form>
       </div>
     </section>

@@ -28,10 +28,28 @@ if ($todo == "login") {
     }
 }
 
+if ($todo == "show_elem") {
+    try {
+        $db = new PDO($base, $root, $password);
+        $db->exec("set names utf8");
+        $done = array();
+        $query = "SELECT * FROM `portfolio` ";
+        $result = $db->query($query);
+ 
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            array_push($done, $row);
+        }
+
+        echo (json_encode($done));
+    } catch (PDOException $e) {
+        echo 'Connection failed: ' . $e->getMessage();
+    }
+}
+
 if ($todo == "add") {
     $target_dirP = "../../Photos/Portfolio/";
     $target_fileP = $target_dirP . basename($_FILES["photo"]["name"]);
-    $imageFileTypeP = strtolower(pathinfo($target_fileP, PATHINFO_EXTENSION));
+    $imageFileTypeP = strtolower(pathinfo($target_fileP, PATHINFO_EXTENSION));;
     if (
         $imageFileTypeP != "jpg" && $imageFileTypeP != "png" && $imageFileTypeP != "jpeg"
         && $imageFileTypeP != "gif"
@@ -69,6 +87,29 @@ if ($todo == "add") {
         }
     }
 }
+
+if ($todo == "edit") {
+   //EDIT !!!!!!!!!!
+}
+
+if ($todo == "fill") {
+    $id = $_POST['id'];
+    try {
+        $db = new PDO($base, $root, $password);
+        $db->exec("set names utf8");
+        $done = array();
+        $query = "SELECT * FROM `portfolio` WHERE id = '$id'";
+        $result = $db->query($query);
+ 
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            array_push($done, $row);
+        }
+
+        echo (json_encode($done));
+    } catch (PDOException $e) {
+        echo 'Connection failed: ' . $e->getMessage();
+    }
+ }
 
 function upload($target_file, $elem, $type)
 {

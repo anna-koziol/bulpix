@@ -5,8 +5,8 @@
 
 body {
     font-family: "Poppins", sans-serif !important;
-    background-image: linear-gradient(to top, #48c6ef 0%, #0087be 100%);
     overflow-x: hidden;
+    color: rgb(94, 93, 93) !important;
 }
 
 .login_panel {
@@ -42,13 +42,22 @@ body {
     box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
 }
 
-input, textarea {
+input, textarea, select {
     padding: 10px !important;
-    background: transparent !important;
-    border: 0px solid #0087be !important;
-    border-bottom: 1px solid #0087be !important;
+    border: 1px solid #f1f1f1 !important;
+    border-radius: 5px !important;
     margin: 10px !important;
-    width: 90%;
+    width: 90% !important;
+    color: #8b8e91;
+}
+
+.custom-select, .custom-file-label {
+    color: #8b8e91ad !important;
+    border: 1px solid #f1f1f1 !important;
+}
+
+.custom-select {
+    line-height: 1 !important;
 }
 
 .login_panel img {
@@ -122,25 +131,35 @@ button:hover {
     }
 }
 
-#add_new {
+#add_new, #edit {
     text-align: center;
     width: 100vw;
     height: 100vh;
     position: absolute;
     top: 0;
     background: white;
+    padding-top: 10vh;
+    opacity: 0;
+    z-index: -100;
 }
 
-#add_new button {
+#edit {
+    opacity: 1;
+    z-index: 1;   
+    height: auto;
+}
+
+#add_new button, #edit  button {
     width: 50%;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    margin-top: 10px !important;
+    margin-top: 40px !important;
     margin-bottom: 10px !important;
+    border-radius: 2px !important;
 }
 
-#add_new h2 {
-    font-size: 1.3em;
+#add_new h2, #edit h2 {
+    font-size: 1.5em;
     color: #48c6ef;
 }
 
