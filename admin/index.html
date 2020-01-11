@@ -41,14 +41,20 @@
     </div>
   </section>
   <main>
-    <div class="menu">
-      <a href="#"><i class="fas fa-plus"></i></a>
-      <a href="#"><i class="far fa-edit"></i></a>
-      <a href="#"><i class="far fa-trash-alt"></i></a>
-      <a href="#"><i class="fas fa-sign-out-alt"></i></a>
-    </div>
+
+    <button id="menu_button"><i class="fas fa-bars"></i></button>
+
+    <nav class="menu align_vertically">
+      <span id="back_arrow"> <i class="fas fa-arrow-left"></i></span>
+      
+      <a href="#"><i class="fas fa-plus"></i> Dodaj element</a>
+      <a href="#"><i class="far fa-edit"></i> Edytuj element</a>
+      <a href="#"><i class="far fa-trash-alt"></i> Usuń element</a>
+      <a href="#" id="log_out"><i class="fas fa-sign-out-alt"></i> Wyloguj</a>
+    </nav>
     <section id="add_new" class="align_vertically">
       <div class="container">
+        <img src="../Photos/Logo/BulpixMedia-01.png" alt="logo Bulpix media" class="logo_img">
         <form action="" enctype="multipart/form-data" class="align_vertically" method="POST" id="form_add">
           <h2>Dodaj element do porfolio</h2>
           <input type="text" name="pname" placeholder="Nazwa projektu..." id="add_Name" />
@@ -63,17 +69,18 @@
             <!-- <input type="file" class="custom-file-input" name="add_Video" id="add_Video">
             <label class="custom-file-label" for="add_Video"  id="label_V">Wybierz plik...</label> -->
           </div>
-          <button id="add_Button" name="add_Button">Dodaj</button>
+          <button id="add_Button" name="add_Button" type="submit">Dodaj</button>
         </form>
       </div>
     </section>
 
     <section id="edit" class="align_vertically">
       <div class="container">
+        <img src="../Photos/Logo/BulpixMedia-01.png" alt="logo Bulpix media" class="logo_img">
         <form action="" enctype="multipart/form-data" class="align_vertically" method="POST" id="form_edit">
           <h2>Edytuj element z porfolio</h2>
           <p>Wybierz element z listy</p>
-    
+
           <select class="custom-select mb-3" id="edit_selct"></select>
 
           <input type="text" name="pnameEdit" placeholder="Nazwa projektu..." id="edit_Name" />
@@ -82,7 +89,7 @@
           <div class="custom-file" id="input_image_edit"></div>
           <p>Video</p>
           <div class="custom-file" id="input_video_edit"></div>
-          <button id="edit_Button" name="edit_Button">Edytuj</button>
+          <button id="edit_Button" name="edit_Button" type="submit">Edytuj</button>
         </form>
       </div>
     </section>

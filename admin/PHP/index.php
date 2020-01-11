@@ -35,7 +35,7 @@ if ($todo == "show_elem") {
         $done = array();
         $query = "SELECT * FROM `portfolio` ";
         $result = $db->query($query);
- 
+
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             array_push($done, $row);
         }
@@ -89,7 +89,112 @@ if ($todo == "add") {
 }
 
 if ($todo == "edit") {
-   //EDIT !!!!!!!!!!
+    global $video, $photo;
+    $name = $_POST['name'];
+    $desc = $_POST['desc'];
+    $id = $_POST['id'];
+    $photoBOOL = $_POST['photoBOOL'];
+    $videoBOOL = $_POST['videoBOOL'];
+    
+    if ((!$videoBOOL) && (!$photoBOOL)) {
+        try {
+            $db = new PDO($base, $root, $password);
+            $db->exec("set names utf8");
+            $query = "UPDATE `portfolio` SET `project_name` = '$name', `project_des` = '$desc' WHERE `portfolio`.`id` = $id;";
+
+            $result = $db->query($query);
+            echo 'Aktualizowano ' . $name;
+        } catch (PDOException $e) {
+            echo 'Connection failed: ' . $e->getMessage();
+        }
+    } else if ((!$videoBOOL) && $photoBOOL) {
+        $target_dirPE = "../../Photos/Portfolio/";
+        $target_filePE = $target_dirPE . basename($_FILES["photo"]["name"]);
+        $imageFileTypePE = strtolower(pathinfo($target_filePE, PATHINFO_EXTENSION));;
+        if (
+            $imageFileTypePE != "jpg" && $imageFileTypePE != "png" && $imageFileTypePE != "jpeg"
+            && $imageFileTypePE != "gif"
+        ) {
+            echo "Dozwolone rozszerzenia pliku: JPG, JPEG, PNG & GIF ";
+        } else {
+            upload($target_filePE, $_FILES["photo"], "zdjeciem");
+        }
+
+        if ($photo) {
+            try {
+                $db = new PDO($base, $root, $password);
+                $db->exec("set names utf8");
+                $query = "UPDATE `portfolio` SET `project_name` = '$name', `project_des` = '$desc', `photo_link` = '$target_filePE' WHERE `portfolio`.`id` = $id;";
+                $result = $db->query($query);
+                echo 'Aktualizowano ' . $name;
+            } catch (PDOException $e) {
+                echo 'Connection failed: ' . $e->getMessage();
+            }
+        }
+    } else if ($videoBOOL && (!$photoBOOL)) {
+
+        $target_dirVE = "../../Photos/Video/";
+        $target_fileVE = $target_dirVE . basename($_FILES["video"]["name"]);
+        $imageFileTypeVE = strtolower(pathinfo($target_fileVE, PATHINFO_EXTENSION));
+        if (
+            $imageFileTypeVE != "mp4" && $imageFileTypeVE != "ogg" && $imageFileTypeVE != "MPEG"
+            && $imageFileTypeVE != "WebM"
+        ) {
+            echo "Dozwolone rozszerzenia pliku: MP4, OGG, MPEG & WebM ";
+        } else {
+            upload($target_fileVE, $_FILES["video"], "filmem");
+        }
+
+        if ($video) {
+            try {
+                $db = new PDO($base, $root, $password);
+                $db->exec("set names utf8");
+                $query = "UPDATE `portfolio` SET `project_name` = '$name', `project_des` = '$desc', `video_link` = '$target_fileVE' WHERE `portfolio`.`id` = $id;";
+
+                $result = $db->query($query);
+                echo 'Aktualizowano ' . $name;
+            } catch (PDOException $e) {
+                echo 'Connection failed: ' . $e->getMessage();
+            }
+        }
+    } else {
+        $target_dirPE = "../../Photos/Portfolio/";
+        $target_filePE = $target_dirPE . basename($_FILES["photo"]["name"]);
+        $imageFileTypePE = strtolower(pathinfo($target_filePE, PATHINFO_EXTENSION));;
+        if (
+            $imageFileTypePE != "jpg" && $imageFileTypePE != "png" && $imageFileTypePE != "jpeg"
+            && $imageFileTypePE != "gif"
+        ) {
+            echo "Dozwolone rozszerzenia pliku: JPG, JPEG, PNG & GIF ";
+        } else {
+            upload($target_filePE, $_FILES["photo"], "zdjeciem");
+        }
+
+        $target_dirVE = "../../Photos/Video/";
+        $target_fileVE = $target_dirVE . basename($_FILES["video"]["name"]);
+        $imageFileTypeVE = strtolower(pathinfo($target_fileVE, PATHINFO_EXTENSION));
+        if (
+            $imageFileTypeVE != "mp4" && $imageFileTypeVE != "ogg" && $imageFileTypeVE != "MPEG"
+            && $imageFileTypeVE != "WebM"
+        ) {
+            echo "Dozwolone rozszerzenia pliku: MP4, OGG, MPEG & WebM ";
+        } else {
+            upload($target_fileVE, $_FILES["video"], "filmem");
+        }
+
+        if ($video && $photo) {
+            try {
+                $db = new PDO($base, $root, $password);
+                $db->exec("set names utf8");
+                $query = "UPDATE `portfolio` SET `project_name` = '$name', `project_des` = '$desc', `photo_link` = '$target_filePE', `video_link` = '$target_fileVE' WHERE `portfolio`.`id` = $id;";
+
+                $result = $db->query($query);
+                echo 'Aktualizowano ' . $name;
+            } catch (PDOException $e) {
+                echo 'Connection failed: ' . $e->getMessage();
+            }
+        }
+    }    
 }
 
 if ($todo == "fill") {
@@ -100,7 +205,7 @@ if ($todo == "fill") {
         $done = array();
         $query = "SELECT * FROM `portfolio` WHERE id = '$id'";
         $result = $db->query($query);
- 
+
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             array_push($done, $row);
         }
@@ -109,7 +214,7 @@ if ($todo == "fill") {
     } catch (PDOException $e) {
         echo 'Connection failed: ' . $e->getMessage();
     }
- }
+}
 
 function upload($target_file, $elem, $type)
 {
@@ -120,20 +225,35 @@ function upload($target_file, $elem, $type)
         if ($check !== false) {
             echo "Plik " . basename($elem["name"]) . " jest " . $type . " - " . $check["mime"] . ". ";
             $uploadOk = 1;
+            if ($type == "filmem") {
+                $video = true;
+            } else {
+                $photo = false;
+            }
         } else {
             echo "Plik " . basename($elem["name"]) . " nie jest" . $type . "  ";
             $uploadOk = 0;
+            if ($type == "filmem") {
+                $video = false;
+            } else {
+                $photo = false;
+            }
         }
     }
     if (file_exists($target_file)) {
         echo "Plik  " . basename($elem["name"]) . " już istnieje w bazie. ";
         $uploadOk = 0;
+        if ($type == "filmem") {
+            $video = false;
+        } else {
+            $photo = false;
+        }
     }
 
     if ($uploadOk == 1) {
         if (move_uploaded_file($elem["tmp_name"], $target_file)) {
             echo "Plik " . basename($elem["name"]) . " został wgrany. ";
-            if ($elem == $_FILES["video"]) {
+            if ($type == "filmem") {
                 $video = true;
             } else {
                 $photo = true;
