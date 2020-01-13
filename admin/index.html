@@ -10,10 +10,6 @@
   <script src="./script.js"></script>
   <link rel="stylesheet" href="./style.css" />
   <script defer src="../fontawesome-free-5.12.0-web/js/all.js"></script>
-
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script> -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -46,11 +42,11 @@
 
     <nav class="menu align_vertically">
       <span id="back_arrow"> <i class="fas fa-arrow-left"></i></span>
-      
-      <a href="#"><i class="fas fa-plus"></i> Dodaj element</a>
-      <a href="#"><i class="far fa-edit"></i> Edytuj element</a>
-      <a href="#"><i class="far fa-trash-alt"></i> Usuń element</a>
-      <a href="#" id="log_out"><i class="fas fa-sign-out-alt"></i> Wyloguj</a>
+
+      <a href="#" id="nav_add"><i class="fas fa-plus"></i> Dodaj element</a>
+      <a href="#" id="nav_edit"><i class="far fa-edit"></i> Edytuj element</a>
+      <a href="#" id="nav_delete"><i class="far fa-trash-alt"></i> Usuń element</a>
+      <a href="../index.html" id="nav_log_out"><i class="fas fa-sign-out-alt"></i> Wyloguj</a>
     </nav>
     <section id="add_new" class="align_vertically">
       <div class="container">
@@ -93,6 +89,19 @@
         </form>
       </div>
     </section>
+
+    <section id="delete" class="align_vertically">
+      <div class="container">
+        <img src="../Photos/Logo/BulpixMedia-01.png" alt="logo Bulpix media" class="logo_img">
+        <form action="" enctype="multipart/form-data" class="align_vertically" method="POST" id="form_delete">
+          <h2>Usuń element z porfolio</h2>
+          <p>Wybierz element z listy</p>
+          <select class="custom-select mb-3" id="delete_select"></select>
+          <button id="delete_Button" name="delete_Button" type="submit">Usuń</button>
+        </form>
+      </div>
+    </section>
+
 
     <div id="toast" class="align_row">
       <div id="toast_img"><i class="far fa-bell"></i></div>

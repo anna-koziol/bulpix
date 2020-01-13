@@ -5,22 +5,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     addInputs();
     edit();
-
-    function edit() {
-        addInputs2();
-        var data = new FormData();
-        data.append('todo', 'show_elem');
-        $.ajax({
-            url: "./PHP/index.php",
-            method: "post",
-            processData: false,
-            contentType: false,
-            data: data
-        })
-            .done(res => addOptions(JSON.parse(res)));
-
-    }
-
+    delete_section();
 
     console.log("DOM fully loaded and parsed");
 
@@ -30,10 +15,188 @@ document.addEventListener("DOMContentLoaded", function (event) {
         xhttp.open("POST", "./PHP/index.php", true);
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText)
                 if (this.responseText == "Fine") {
                     $('.login_panel').css('opacity', 0);
                     $('.login_panel').addClass('fade-out');
+                    $('#add_new').css('opacity', 1);
+                    $('#add_new').css('z-index', 1);
+                    $('#add_new').css('height', 'auto');
+
+
+                    $('#add_Button').on('click', (e) => {
+                        e.preventDefault();
+                        var file_photo = $('#add_Photo').prop('files')[0];
+                        var file_video = $('#add_Video').prop('files')[0];
+                        var form_data = new FormData();
+                        form_data.append('photo', file_photo);
+                        form_data.append('video', file_video);
+                        form_data.append('name', $('#add_Name').val());
+                        form_data.append('desc', $('#add_Des').val());
+                        form_data.append('todo', 'add')
+                        send(file_photo, file_video, form_data, $('#add_Name'), $('#add_Des'));
+                    })
+
+                    $('#edit_Button').on('click', (e) => {
+                        e.preventDefault();
+                        var file_photo = $('#edit_Photo').prop('files')[0];
+                        var file_video = $('#edit_Video').prop('files')[0];
+                        var form_data = new FormData();
+                        form_data.append('photo', file_photo);
+                        form_data.append('video', file_video);
+                        form_data.append('name', $('#edit_Name').val());
+                        form_data.append('desc', $('#edit_Des').val());
+                        form_data.append('id', id);
+                        form_data.append('todo', 'edit');
+
+                        if (file_photo != undefined && file_video != undefined) {
+                            form_data.append('photoBOOL', 1);
+                            form_data.append('videoBOOL', 1);
+                            console.log('1')
+                        }
+                        else if (file_photo == undefined && file_video != undefined) {
+                            form_data.append('photoBOOL', 0);
+                            form_data.append('videoBOOL', 1);
+                            console.log('2')
+
+                        }
+                        else if (file_photo != undefined && file_video == undefined) {
+                            form_data.append('photoBOOL', 1);
+                            form_data.append('videoBOOL', 0);
+                            console.log('3')
+
+                        }
+                        else {
+                            form_data.append('photoBOOL', 0);
+                            form_data.append('videoBOOL', 0);
+                            console.log('4')
+
+                        }
+
+                        $("#toast").removeClass('fade-out-top');
+                        $("#toast").removeClass('fade-in-top');
+                        $.ajax({
+                            url: "./PHP/index.php",
+                            method: "post",
+                            processData: false,
+                            contentType: false,
+                            data: form_data
+                        })
+                            .done(res => {
+                                toast(res)
+                                var data = new FormData();
+                                data.append('todo', 'show_elem');
+                                $.ajax({
+                                    url: "./PHP/index.php",
+                                    method: "post",
+                                    processData: false,
+                                    contentType: false,
+                                    data: data
+                                })
+                                    .done(res => addOptions(JSON.parse(res)));
+                            }
+                            );
+                    })
+
+
+                    const send = (file_photo, file_video, form_data, name, des) => {
+                        $("#toast").removeClass('fade-out-top');
+                        $("#toast").removeClass('fade-in-top');
+
+                        if (file_photo != undefined && file_video != undefined && name.val() != '' && des.val() != '') {
+                            $.ajax({
+                                url: "./PHP/index.php",
+                                method: "post",
+                                processData: false,
+                                contentType: false,
+                                data: form_data
+                            })
+                                .done(res =>
+                                    toast(res)
+                                );
+                        }
+                        else {
+                            toast(' Wprowadź wszystkie pola w formularzu! ')
+                        }
+                    }
+
+                    const toast = (text) => {
+                        $('#input_video').empty();
+                        $('#input_image').empty();
+                        addInputs();
+                        onInputChange();
+
+                        $("#toast_des").html(' ');
+                        $("#toast_des").html(text);
+                        $("#toast").addClass('fade-in-top');
+                        setTimeout(function () { $("#toast").addClass('fade-out-top') }, 3500);
+                        $("input, textarea").val('');
+                    }
+                    onInputChange();
+
+
+
+                    $('#menu_button').on('click', function () {
+                        console.log('e23fr')
+                        $('nav').removeClass('slide-out-left');
+                        $('nav').addClass('slide-in-left');
+                    });
+
+                    $('#back_arrow').on('click', function () {
+                        $('nav').removeClass('slide-in-left');
+                        $('nav').addClass('slide-out-left');
+                    });
+
+
+                    $('nav a').on('click', function () {
+                        $('#add_new, #edit, #delete').css('opacity', 0);
+                        $('#add_new, #edit, #delete').css('z-index', -100);
+                        $('#add_new, #edit, #delete').css('height', '0px');
+                        var block_id = $(this).attr('id');
+
+                        if (block_id == 'nav_delete') {
+                            $('#delete').css('opacity', 1);
+                            $('#delete').css('z-index', 1);
+                            $('#delete').css('height', 'auto');
+                        }
+                        else if (block_id == 'nav_edit') {
+                            $('#edit').css('opacity', 1);
+                            $('#edit').css('z-index', 1);
+                            $('#edit').css('height', 'auto');
+                        }
+                        else if (block_id == 'nav_log_out') {
+
+                        }
+                        else {
+                            $('#add_new').css('opacity', 1);
+                            $('#add_new').css('z-index', 1);
+                            $('#add_new').css('height', 'auto');
+                        }
+
+                    });
+
+                    $('#delete_Button').on('click', (e) => {
+                        e.preventDefault();
+                        var id = $('#delete_select').children("option:selected").val();
+                        var name = $('#delete_select').children("option:selected").text();
+                        var data = new FormData();
+                        data.append('todo', 'remove');
+                        data.append('id', id);
+                        data.append('name', name);
+
+                        $.ajax({
+                            url: "./PHP/index.php",
+                            method: "post",
+                            processData: false,
+                            contentType: false,
+                            data: data
+                        })
+                            .done(res => {
+                                toast(res)
+                                delete_section();
+                            });
+                    })
+
+
                 }
                 else {
                     $('#alerts_login').text('Błędne hasło lub login')
@@ -46,127 +209,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         xhttp.send("todo=login&login=" + $("#loginLogin").val() + "&password=" + $("#loginPassword").val());
     })
 
-    $('#add_Button').on('click', (e) => {
-        e.preventDefault();
-        var file_photo = $('#add_Photo').prop('files')[0];
-        var file_video = $('#add_Video').prop('files')[0];
-        var form_data = new FormData();
-        form_data.append('photo', file_photo);
-        form_data.append('video', file_video);
-        form_data.append('name', $('#add_Name').val());
-        form_data.append('desc', $('#add_Des').val());
-        form_data.append('todo', 'add')
-        send(file_photo, file_video, form_data, $('#add_Name'), $('#add_Des'));
-    })
 
-    $('#edit_Button').on('click', (e) => {
-        e.preventDefault();
-        var file_photo = $('#edit_Photo').prop('files')[0];
-        var file_video = $('#edit_Video').prop('files')[0];
-        var form_data = new FormData();
-        form_data.append('photo', file_photo);
-        form_data.append('video', file_video);
-        form_data.append('name', $('#edit_Name').val());
-        form_data.append('desc', $('#edit_Des').val());
-        form_data.append('id', id);
-        form_data.append('todo', 'edit');
-
-        if (file_photo != undefined && file_video != undefined) {
-            form_data.append('photoBOOL',  1);
-            form_data.append('videoBOOL', 1);
-            console.log('1')
-        }
-        else if (file_photo == undefined && file_video  != undefined) {
-            form_data.append('photoBOOL',  0);
-            form_data.append('videoBOOL', 1);
-            console.log('2')
-
-        }
-        else if(file_photo != undefined && file_video == undefined ){
-            form_data.append('photoBOOL',  1);
-            form_data.append('videoBOOL', 0);
-            console.log('3')
-
-        }
-        else {
-            form_data.append('photoBOOL',  0);
-            form_data.append('videoBOOL', 0);
-            console.log('4')
-
-        }
-
-        $("#toast").removeClass('fade-out-top');
-        $("#toast").removeClass('fade-in-top');
-        $.ajax({
-            url: "./PHP/index.php",
-            method: "post",
-            processData: false,
-            contentType: false,
-            data: form_data
-        })
-            .done(res => {
-                toast(res)
-                var data = new FormData();
-                data.append('todo', 'show_elem');
-                $.ajax({
-                    url: "./PHP/index.php",
-                    method: "post",
-                    processData: false,
-                    contentType: false,
-                    data: data
-                })
-                    .done(res => addOptions(JSON.parse(res)));
-            }
-            );
-    })
-
-
-    const send = (file_photo, file_video, form_data, name, des) => {
-        $("#toast").removeClass('fade-out-top');
-        $("#toast").removeClass('fade-in-top');
-
-        if (file_photo != undefined && file_video != undefined && name.val() != '' && des.val() != '') {
-            $.ajax({
-                url: "./PHP/index.php",
-                method: "post",
-                processData: false,
-                contentType: false,
-                data: form_data
-            })
-                .done(res =>
-                    toast(res)
-                );
-        }
-        else {
-            toast(' Wprowadź wszystkie pola w formularzu! ')
-        }
-    }
-
-    const toast = (text) => {
-        $('#input_video').empty();
-        $('#input_image').empty();
-        addInputs();
-        onInputChange();
-
-        $("#toast_des").html(' ');
-        $("#toast_des").html(text);
-        $("#toast").addClass('fade-in-top');
-        setTimeout(function () { $("#toast").addClass('fade-out-top') }, 3500);
-        $("input, textarea").val('');
-    }
-    onInputChange();
-
-
-
-    $('#menu_button').on('click', function () {
-        $('nav').removeClass('slide-out-left');
-        $('nav').addClass('slide-in-left');
-    });
-
-    $('#back_arrow').on('click', function () {
-        $('nav').removeClass('slide-in-left');
-        $('nav').addClass('slide-out-left');
-    });
 
 
 });
@@ -190,6 +233,33 @@ function addInputs2() {
     <label class="custom-file-label" for="add_Video"  id="label_VE">Wybierz plik...</label>`);
     $('#input_image_edit').append(`<input type="file" class="custom-file-input" name="edit_Photo" accept="image/*" id="edit_Photo">
     <label class="custom-file-label" for="add_Photo"  id="label_PE">Wybierz plik...</label>`);
+}
+
+function edit() {
+    addInputs2();
+    var data = new FormData();
+    data.append('todo', 'show_elem');
+    $.ajax({
+        url: "./PHP/index.php",
+        method: "post",
+        processData: false,
+        contentType: false,
+        data: data
+    })
+        .done(res => addOptions(JSON.parse(res)));
+}
+
+function delete_section() {
+    var data = new FormData();
+    data.append('todo', 'show_elem_del');
+    $.ajax({
+        url: "./PHP/index.php",
+        method: "post",
+        processData: false,
+        contentType: false,
+        data: data
+    })
+        .done(res => addOptionsDelete(JSON.parse(res)));
 }
 
 function addOptions(data) {
@@ -217,6 +287,15 @@ function addOptions(data) {
             );
     });
 }
+
+function addOptionsDelete(data) {
+    $('#delete_select').empty();
+    for (i = 0; i < data.length; i++) {
+        $('#delete_select').append(`<option value="${data[i].id}"> 
+        ${data[i].project_name}</option>`)
+    }
+}
+
 
 function fill(data) {
     //clear

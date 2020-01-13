@@ -28,7 +28,7 @@ if ($todo == "login") {
     }
 }
 
-if ($todo == "show_elem") {
+if ($todo == "show_elem" || $todo == "show_elem_del") {
     try {
         $db = new PDO($base, $root, $password);
         $db->exec("set names utf8");
@@ -46,9 +46,26 @@ if ($todo == "show_elem") {
     }
 }
 
+if ($todo == "remove") {
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    try {
+        $db = new PDO($base, $root, $password);
+        $db->exec("set names utf8");
+        $done = array();
+        $query = "DELETE FROM `portfolio` WHERE `id` = '$id'";
+        $result = $db->query($query);
+        echo ('Usunięto '.$name);
+    } catch (PDOException $e) {
+        echo 'Connection failed: ' . $e->getMessage();
+    }
+}
+
 if ($todo == "add") {
     $target_dirP = "../../Photos/Portfolio/";
+    $target_dirP2 = "./Photos/Portfolio/";
     $target_fileP = $target_dirP . basename($_FILES["photo"]["name"]);
+    $target_fileP2 = $target_dirP2 . basename($_FILES["photo"]["name"]);
     $imageFileTypeP = strtolower(pathinfo($target_fileP, PATHINFO_EXTENSION));;
     if (
         $imageFileTypeP != "jpg" && $imageFileTypeP != "png" && $imageFileTypeP != "jpeg"
@@ -60,7 +77,9 @@ if ($todo == "add") {
     }
 
     $target_dirV = "../../Photos/Video/";
+    $target_dirV2 = "./Photos/Video/";
     $target_fileV = $target_dirV . basename($_FILES["video"]["name"]);
+    $target_fileV2 = $target_dirV2 . basename($_FILES["video"]["name"]);
     $imageFileTypeV = strtolower(pathinfo($target_fileV, PATHINFO_EXTENSION));
     if (
         $imageFileTypeV != "mp4" && $imageFileTypeV != "ogg" && $imageFileTypeV != "MPEG"
@@ -80,7 +99,7 @@ if ($todo == "add") {
             $name = $_POST['name'];
             $desc = $_POST['desc'];
 
-            $query = "INSERT into `portfolio` values ('','$name','$desc','$target_fileP','$target_fileV')";
+            $query = "INSERT into `portfolio` values ('','$name','$desc','$target_fileP2','$target_fileV2')";
             $result = $db->query($query);
         } catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
@@ -109,7 +128,9 @@ if ($todo == "edit") {
         }
     } else if ((!$videoBOOL) && $photoBOOL) {
         $target_dirPE = "../../Photos/Portfolio/";
+        $target_dirPE2 = "./Photos/Portfolio/";
         $target_filePE = $target_dirPE . basename($_FILES["photo"]["name"]);
+        $target_filePE2 = $target_dirPE2 . basename($_FILES["photo"]["name"]);
         $imageFileTypePE = strtolower(pathinfo($target_filePE, PATHINFO_EXTENSION));;
         if (
             $imageFileTypePE != "jpg" && $imageFileTypePE != "png" && $imageFileTypePE != "jpeg"
@@ -124,7 +145,7 @@ if ($todo == "edit") {
             try {
                 $db = new PDO($base, $root, $password);
                 $db->exec("set names utf8");
-                $query = "UPDATE `portfolio` SET `project_name` = '$name', `project_des` = '$desc', `photo_link` = '$target_filePE' WHERE `portfolio`.`id` = $id;";
+                $query = "UPDATE `portfolio` SET `project_name` = '$name', `project_des` = '$desc', `photo_link` = '$target_filePE2' WHERE `portfolio`.`id` = $id;";
                 $result = $db->query($query);
                 echo 'Aktualizowano ' . $name;
             } catch (PDOException $e) {
@@ -134,7 +155,9 @@ if ($todo == "edit") {
     } else if ($videoBOOL && (!$photoBOOL)) {
 
         $target_dirVE = "../../Photos/Video/";
+        $target_dirVE2 = "./Photos/Video/";
         $target_fileVE = $target_dirVE . basename($_FILES["video"]["name"]);
+        $target_fileVE2 = $target_dirVE2 . basename($_FILES["video"]["name"]);
         $imageFileTypeVE = strtolower(pathinfo($target_fileVE, PATHINFO_EXTENSION));
         if (
             $imageFileTypeVE != "mp4" && $imageFileTypeVE != "ogg" && $imageFileTypeVE != "MPEG"
@@ -149,7 +172,7 @@ if ($todo == "edit") {
             try {
                 $db = new PDO($base, $root, $password);
                 $db->exec("set names utf8");
-                $query = "UPDATE `portfolio` SET `project_name` = '$name', `project_des` = '$desc', `video_link` = '$target_fileVE' WHERE `portfolio`.`id` = $id;";
+                $query = "UPDATE `portfolio` SET `project_name` = '$name', `project_des` = '$desc', `video_link` = '$target_fileVE2' WHERE `portfolio`.`id` = $id;";
 
                 $result = $db->query($query);
                 echo 'Aktualizowano ' . $name;
@@ -159,7 +182,9 @@ if ($todo == "edit") {
         }
     } else {
         $target_dirPE = "../../Photos/Portfolio/";
+        $target_dirPE2 = "./Photos/Portfolio/";
         $target_filePE = $target_dirPE . basename($_FILES["photo"]["name"]);
+        $target_filePE2 = $target_dirPE2 . basename($_FILES["photo"]["name"]);
         $imageFileTypePE = strtolower(pathinfo($target_filePE, PATHINFO_EXTENSION));;
         if (
             $imageFileTypePE != "jpg" && $imageFileTypePE != "png" && $imageFileTypePE != "jpeg"
@@ -171,7 +196,10 @@ if ($todo == "edit") {
         }
 
         $target_dirVE = "../../Photos/Video/";
+        $target_dirVE2 = "./Photos/Video/";
         $target_fileVE = $target_dirVE . basename($_FILES["video"]["name"]);
+        $target_fileVE2 = $target_dirVE2 . basename($_FILES["video"]["name"]);
+
         $imageFileTypeVE = strtolower(pathinfo($target_fileVE, PATHINFO_EXTENSION));
         if (
             $imageFileTypeVE != "mp4" && $imageFileTypeVE != "ogg" && $imageFileTypeVE != "MPEG"
@@ -186,7 +214,7 @@ if ($todo == "edit") {
             try {
                 $db = new PDO($base, $root, $password);
                 $db->exec("set names utf8");
-                $query = "UPDATE `portfolio` SET `project_name` = '$name', `project_des` = '$desc', `photo_link` = '$target_filePE', `video_link` = '$target_fileVE' WHERE `portfolio`.`id` = $id;";
+                $query = "UPDATE `portfolio` SET `project_name` = '$name', `project_des` = '$desc', `photo_link` = '$target_filePE2', `video_link` = '$target_fileVE2' WHERE `portfolio`.`id` = $id;";
 
                 $result = $db->query($query);
                 echo 'Aktualizowano ' . $name;
@@ -265,3 +293,6 @@ function upload($target_file, $elem, $type)
         echo " Spróbuj jeszcze raz ";
     }
 }
+
+
+?>

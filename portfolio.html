@@ -15,9 +15,7 @@
     <link rel="stylesheet" href="./css/style.css" type="text/css" />
     <link rel="stylesheet" href="./css/portfolio.css" type="text/css"/>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
@@ -97,7 +95,7 @@
             <h3 class="topic">Zobacz wybrane realizacje</h3>
             <div class="underline"></div>
 
-            <div class="row">
+            <div class="row" id="portfolio_row">
                 <div class="col-12 col-md-6 col-lg-3 porfolio_img align-self-center">
                     <div class="porfolio_img_description">
                         <h4>Projekt A</h4>
@@ -342,37 +340,9 @@
     </footer>
 
     <div class="modals">
-        <div class="modal" id="modal1" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Projekt Bulpix</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <video controls src="./Photos/Video/Sample Videos 2.mp4" class="portfolio_vid"></video>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
 
-        <div class="modal" id="modal2" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Projekt Bulpix</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <video controls src="./Photos/Video/Sample Videos 4.mp4" class="portfolio_vid"></video>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 
 </body>
