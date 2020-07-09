@@ -1,50 +1,51 @@
-document.addEventListener("DOMContentLoaded", function (event) {
-    $(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function(event) {
+    $(document).ready(function() {
         console.log("Podłączono main.js")
 
-        $('.navbar-nav').find('a').click(function () {
+        $('.navbar-nav').find('a').click(function() {
             var $href = $(this).attr('href');
             var $anchor = $($href).offset();
             $(window).scrollTop($anchor.top - 50);
             return false;
         });
 
-        // Play/stop videos in modals
-        $('.play_button').click(function () {
-            let vid = $(this).parent().find('video')[0]
-            vid.paused ? vid.play() : vid.pause();
+        $('#cookieConsentOK').click(function() {
+            $("#cookieConsent").css('display', 'none')
         });
 
-        $('.close').click(function () {
-            var videos = $('.portfolio_vid')
+
+
+        $('.close').click(function() {
+            var videos = $('.modal-body iframe')
             for (let i = 0; i < videos.length; i++) {
-                videos[i].load();
+                $(videos[i]).attr('src', $(videos[i]).attr('src'));
             }
         });
         // Change display from block to flex when modal is open
-        $('#modal1').on('shown.bs.modal', () => {
-            $('#modal1').css('display', 'flex')
-        });
-        $('#modal2').on('shown.bs.modal', () => {
-            $('#modal2').css('display', 'flex')
+        $('.modal').on('shown.bs.modal', function() {
+            console.log("change")
+            $(this).css('display', 'flex')
         });
 
         // Page scroll - actions
-        $(window).scroll(function () {
+        $(window).scroll(function() {
             var height = $(window).scrollTop();
             var window_height = $(window).height();
             var menu_height = $('#menu1').innerHeight();
             if (height > window_height) {
                 $('footer').css('opacity', 1);
-                $('footer').css("zIndex", -9)
+                $('footer').css("zIndex", -9);
+                $('#intro').css("zIndex", -11);
+                $('#intro_button').css("zIndex", -11);
+            } else {
+                $('footer').css("zIndex", -11);
+                $('#intro').css("zIndex", 1);
+                $('#intro_button').css("zIndex", 2);
             }
-            else {
-                $('footer').css("zIndex", -11)
-            }
-            (height > menu_height) ? $('#menu1').addClass('hideNav') : $('#menu1').removeClass('hideNav');
+            (height > menu_height) ? $('#menu1').addClass('hideNav'): $('#menu1').removeClass('hideNav');
         });
 
-        $(window).resize(function () {
+        $(window).resize(function() {
             $('main').css('margin-bottom', $('#contact').innerHeight());
         });
 
@@ -69,14 +70,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 formData.append("text", $("#form_text").val());
 
                 fetch("php/PHPMailer/src/sendMessage.php", {
-                    method: "post",
-                    body: formData,
-                })
-                    .then(res => res.json())
+                        method: "post",
+                        body: formData,
+                    })
                     .then(res => {
-                        if (res.data)
-                            alert('wysłano')
-                        else alert('nie wysłano maila')
+                        console.log(res)
+                        if (res) {
+                            $error.text("Mail został wysłany!");
+                            $("#form_names").val(' ')
+                            $("#form_mail").val(' ')
+                            $("#form_text").val(' ')
+                        } else $error.text("Błąd - mail nie został wysłany!");
                     })
                     .catch(error => $error.text("Błąd: " + error));
             } else {
@@ -85,4 +89,3 @@ document.addEventListener("DOMContentLoaded", function (event) {
         })
     })
 });
-

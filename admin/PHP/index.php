@@ -76,28 +76,16 @@ if ($todo == "add") {
         upload($target_fileP, $_FILES["photo"], "zdjeciem");
     }
 
-    $target_dirV = "../../Photos/Video/";
-    $target_dirV2 = "./Photos/Video/";
-    $target_fileV = $target_dirV . basename($_FILES["video"]["name"]);
-    $target_fileV2 = $target_dirV2 . basename($_FILES["video"]["name"]);
-    $imageFileTypeV = strtolower(pathinfo($target_fileV, PATHINFO_EXTENSION));
-    if (
-        $imageFileTypeV != "mp4" && $imageFileTypeV != "ogg" && $imageFileTypeV != "MPEG"
-        && $imageFileTypeV != "WebM"
-    ) {
-        echo "Dozwolone rozszerzenia pliku: MP4, OGG, MPEG & WebM ";
-    } else {
-        upload($target_fileV, $_FILES["video"], "filmem");
-    }
-
     //Jesli  wgrało się video i photo - append do bazy danych
-    if ($video && $photo) {
+    if ($photo) {
         try {
             $db = new PDO($base, $root, $password);
             $db->exec("set names utf8");
 
             $name = $_POST['name'];
             $desc = $_POST['desc'];
+            $target_fileV2 = $_POST['video'];
+
 
             $query = "INSERT into `portfolio` values ('','$name','$desc','$target_fileP2','$target_fileV2')";
             $result = $db->query($query);
@@ -111,6 +99,8 @@ if ($todo == "edit") {
     global $video, $photo;
     $name = $_POST['name'];
     $desc = $_POST['desc'];
+    $videoEdit = $_POST['video'];
+
     $id = $_POST['id'];
     $photoBOOL = $_POST['photoBOOL'];
     $videoBOOL = $_POST['videoBOOL'];
@@ -153,33 +143,16 @@ if ($todo == "edit") {
             }
         }
     } else if ($videoBOOL && (!$photoBOOL)) {
-
-        $target_dirVE = "../../Photos/Video/";
-        $target_dirVE2 = "./Photos/Video/";
-        $target_fileVE = $target_dirVE . basename($_FILES["video"]["name"]);
-        $target_fileVE2 = $target_dirVE2 . basename($_FILES["video"]["name"]);
-        $imageFileTypeVE = strtolower(pathinfo($target_fileVE, PATHINFO_EXTENSION));
-        if (
-            $imageFileTypeVE != "mp4" && $imageFileTypeVE != "ogg" && $imageFileTypeVE != "MPEG"
-            && $imageFileTypeVE != "WebM"
-        ) {
-            echo "Dozwolone rozszerzenia pliku: MP4, OGG, MPEG & WebM ";
-        } else {
-            upload($target_fileVE, $_FILES["video"], "filmem");
-        }
-
-        if ($video) {
             try {
                 $db = new PDO($base, $root, $password);
                 $db->exec("set names utf8");
-                $query = "UPDATE `portfolio` SET `project_name` = '$name', `project_des` = '$desc', `video_link` = '$target_fileVE2' WHERE `portfolio`.`id` = $id;";
+                $query = "UPDATE `portfolio` SET `project_name` = '$name', `project_des` = '$desc', `video_link` = '$videoEdit' WHERE `portfolio`.`id` = $id;";
 
                 $result = $db->query($query);
                 echo 'Aktualizowano ' . $name;
             } catch (PDOException $e) {
                 echo 'Connection failed: ' . $e->getMessage();
             }
-        }
     } else {
         $target_dirPE = "../../Photos/Portfolio/";
         $target_dirPE2 = "./Photos/Portfolio/";
@@ -195,26 +168,11 @@ if ($todo == "edit") {
             upload($target_filePE, $_FILES["photo"], "zdjeciem");
         }
 
-        $target_dirVE = "../../Photos/Video/";
-        $target_dirVE2 = "./Photos/Video/";
-        $target_fileVE = $target_dirVE . basename($_FILES["video"]["name"]);
-        $target_fileVE2 = $target_dirVE2 . basename($_FILES["video"]["name"]);
-
-        $imageFileTypeVE = strtolower(pathinfo($target_fileVE, PATHINFO_EXTENSION));
-        if (
-            $imageFileTypeVE != "mp4" && $imageFileTypeVE != "ogg" && $imageFileTypeVE != "MPEG"
-            && $imageFileTypeVE != "WebM"
-        ) {
-            echo "Dozwolone rozszerzenia pliku: MP4, OGG, MPEG & WebM ";
-        } else {
-            upload($target_fileVE, $_FILES["video"], "filmem");
-        }
-
-        if ($video && $photo) {
+        if ($photo) {
             try {
                 $db = new PDO($base, $root, $password);
                 $db->exec("set names utf8");
-                $query = "UPDATE `portfolio` SET `project_name` = '$name', `project_des` = '$desc', `photo_link` = '$target_filePE2', `video_link` = '$target_fileVE2' WHERE `portfolio`.`id` = $id;";
+                $query = "UPDATE `portfolio` SET `project_name` = '$name', `project_des` = '$desc', `photo_link` = '$target_filePE2', `video_link` = '$videoEdit' WHERE `portfolio`.`id` = $id;";
 
                 $result = $db->query($query);
                 echo 'Aktualizowano ' . $name;

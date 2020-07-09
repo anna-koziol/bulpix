@@ -1,26 +1,24 @@
-document.addEventListener("DOMContentLoaded", function (event) {
-    $(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function(event) {
+    $(document).ready(function() {
         console.log("Podłączono index.js")
         var video = document.getElementById("vid");
+        var videoCounter = 0;
 
         function checkLoad() {
-            if (video.readyState === 4) {
+            $('#vid').on('load', function() {
                 //complete load video
                 $('#loading').css("zIndex", -15);
                 $('#loading').addClass("slide_display_none");
                 $('body').css('overflow-y', 'scroll');
-                ($(window).width() >= 768) ? $('#nav_1').show() : $('#nav_2').show();
+                ($(window).width() >= 768) ? $('#nav_1').show(): $('#nav_2').show();
                 $('#nav_1, #nav_2').css("opacity", 1);
                 //complete load logo in footer
-                $("#logo_contact").one("load", function () {
+                $("#logo_contact").one("load", function() {
                     $('main').css('margin-bottom', $('#contact').innerHeight());
-                }).each(function () {
+                }).each(function() {
                     if (this.complete) { $(this).trigger('load'); }
                 });
-
-            } else {
-                setTimeout(checkLoad, 100);
-            }
+            });
         }
 
         checkLoad();
@@ -34,28 +32,31 @@ document.addEventListener("DOMContentLoaded", function (event) {
         $('.fill:eq(12), .fill:eq(13)').css('background-color', 'rgb(49,71,94)');
 
         //SHOWREEL
-        $('#intro_button').click(function () {
-            if (video.muted) {
+        $('#intro_button').click(function() {
+
+            if (videoCounter % 2 == 0) {
                 $('footer').css('opacity', 0);
-                video.load();
-                video.muted = false;
+                videoCounter++;
                 this.innerHTML = '<i class="fas fa-pause"></i>';
                 $('#intro h1, #intro h2').removeClass('puff-in-center');
                 $('#intro h1, #intro h2').addClass('puff-out-center');
                 $('#shadow').css('opacity', 0);
-            }
-            else {
+                $('#vid').css('z-index', 1);
+                $("#vid")[0].src = "https://www.youtube.com/embed/DzirYsmMdYU?controls=0?&autoplay=1";
+            } else {
                 $('footer').css('opacity', 1);
-                video.muted = true;
+                videoCounter++;
                 this.innerHTML = '<i class="fas fa-play"></i>';
                 $('#intro h1, #intro h2').removeClass('puff-out-center');
                 $('#intro h1, #intro h2').addClass('puff-in-center');
                 $('#shadow').css('opacity', 0.6);
+                $('#vid').css('z-index', -10);
+                $("#vid")[0].src = "https://www.youtube.com/embed/DzirYsmMdYU?&controls=0&mute=1";
             }
         });
 
 
-        $(window).scroll(function () {
+        $(window).scroll(function() {
             var height = $(window).scrollTop();
 
             //ANIMATION TO PROGRESSBAR
@@ -85,6 +86,73 @@ document.addEventListener("DOMContentLoaded", function (event) {
             }
 
         });
+
+        var data = new FormData();
+        data.append('todo', 'show_portfolio');
+
+        $.ajax({
+                url: "./show_portfolio.php",
+                method: "post",
+                processData: false,
+                contentType: false,
+                data: data
+            })
+            .done(res => {
+                fill_portfolio(JSON.parse(res))
+            });
+
     })
 });
 
+
+
+function fill_portfolio(data) {
+    let elem = $('#portfolioDatabase8');
+    elem.empty();
+    let modals = $('.modals');
+    let length;
+    if (data.length < 6) { length = data.length } else { length = 6 }
+
+    for (i = 0; i < length; i++) {
+        modals.append(` 
+        <div class="modal" id="modal${data[i].id}" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">${data[i].project_name}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">${data[i].video_link}</div>
+                </div>
+            </div>
+        </div>`)
+        elem.append(` 
+        <div class="col-12 col-md-6 col-lg-4 porfolio_img align-self-center">
+            <div class="porfolio_img_description">
+                <h4>${data[i].project_name}</h4>
+                <p>${data[i].project_des}</p>
+                <button type="button" data-toggle="modal" data-target="#modal${data[i].id}">
+                    Zobacz
+                </button>
+            </div>
+            <img src="${data[i].photo_link}" alt="${data[i].photo_link}" onError="image_error($(this))" />
+        </div>`)
+    }
+
+    $('.close').click(function() {
+        var videos = $('.modal-body iframe')
+        for (let i = 0; i < videos.length; i++) {
+            $(videos[i]).attr('src', $(videos[i]).attr('src'));
+        }
+    });
+    $('.modal').on('shown.bs.modal', function() {
+        console.log("change 2")
+        $(this).css('display', 'flex')
+    });
+}
+
+function image_error(img) {
+    img[0].src = "./Photos/Portfolio/jakob-owens-ZOtnmYS0JVg-unsplash.jpg"
+}

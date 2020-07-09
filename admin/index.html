@@ -2,112 +2,107 @@
 <html lang="pl">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Bulpix Media - Admin</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Bulpix Media - Admin</title>
 
-  <script src="./script.js"></script>
-  <link rel="stylesheet" href="./style.css" />
-  <script defer src="../fontawesome-free-5.12.0-web/js/all.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./script.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="../fontawesome-free-5.12.0-web/js/all.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-    integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-    integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <section class="login_panel align_vertically">
-    <div class="login_form">
-      <img src="./Photos/BulpixMedia-01.jpg" alt="logo" />
-      <h1>Logowanie</h1>
-      <form action="#" method="post" class="align_vertically">
-        <input type="text" placeholder="Login" name="login" required id="loginLogin" />
-        <input type="password" placeholder="Hasło" name="psw" required id="loginPassword" />
-        <button type="submit" id="loginButton" name="submit">ZALOGUJ</button>
-      </form>
 
-      <p id="alerts_login" class="alerts"></p>
-    </div>
-  </section>
-  <main>
+    <section id="loadingGIF">Trwa wgrywanie plików...</section>
 
-    <button id="menu_button"><i class="fas fa-bars"></i></button>
 
-    <nav class="menu align_vertically">
-      <span id="back_arrow"> <i class="fas fa-arrow-left"></i></span>
+    <section class="login_panel align_vertically">
+        <div class="login_form">
+            <img src="./Photos/BulpixMedia-01.jpg" alt="logo" />
+            <h1>Logowanie</h1>
+            <form action="#" method="post" class="align_vertically">
+                <input type="text" placeholder="Login" name="login" required id="loginLogin" />
+                <input type="password" placeholder="Hasło" name="psw" required id="loginPassword" />
+                <button type="submit" id="loginButton" name="submit">ZALOGUJ</button>
+            </form>
 
-      <a href="#" id="nav_add"><i class="fas fa-plus"></i> Dodaj element</a>
-      <a href="#" id="nav_edit"><i class="far fa-edit"></i> Edytuj element</a>
-      <a href="#" id="nav_delete"><i class="far fa-trash-alt"></i> Usuń element</a>
-      <a href="../index.html" id="nav_log_out"><i class="fas fa-sign-out-alt"></i> Wyloguj</a>
-    </nav>
-    <section id="add_new" class="align_vertically">
-      <div class="container">
-        <img src="../Photos/Logo/BulpixMedia-01.png" alt="logo Bulpix media" class="logo_img">
-        <form action="" enctype="multipart/form-data" class="align_vertically" method="POST" id="form_add">
-          <h2>Dodaj element do porfolio</h2>
-          <input type="text" name="pname" placeholder="Nazwa projektu..." id="add_Name" />
-          <textarea rows="5" cols="80" id="add_Des" placeholder="Opis projektu..."></textarea>
-          <p>Miniaturka - zdjęcie</p>
-          <div class="custom-file" id="input_image">
-            <!-- <input type="file" class="custom-file-input" name="add_Photo" accept="image/*" id="add_Photo">
-            <label class="custom-file-label" for="add_Photo"  id="label_P">Wybierz plik...</label> -->
-          </div>
-          <p>Video</p>
-          <div class="custom-file" id="input_video">
-            <!-- <input type="file" class="custom-file-input" name="add_Video" id="add_Video">
-            <label class="custom-file-label" for="add_Video"  id="label_V">Wybierz plik...</label> -->
-          </div>
-          <button id="add_Button" name="add_Button" type="submit">Dodaj</button>
-        </form>
-      </div>
+            <p id="alerts_login" class="alerts"></p>
+        </div>
     </section>
+    <main>
 
-    <section id="edit" class="align_vertically">
-      <div class="container">
-        <img src="../Photos/Logo/BulpixMedia-01.png" alt="logo Bulpix media" class="logo_img">
-        <form action="" enctype="multipart/form-data" class="align_vertically" method="POST" id="form_edit">
-          <h2>Edytuj element z porfolio</h2>
-          <p>Wybierz element z listy</p>
+        <button id="menu_button"><i class="fas fa-bars"></i></button>
 
-          <select class="custom-select mb-3" id="edit_selct"></select>
+        <nav class="menu align_vertically">
+            <span id="back_arrow"> <i class="fas fa-arrow-left"></i></span>
 
-          <input type="text" name="pnameEdit" placeholder="Nazwa projektu..." id="edit_Name" />
-          <textarea rows="5" cols="80" id="edit_Des" placeholder="Opis projektu..."></textarea>
-          <p>Miniaturka - zdjęcie</p>
-          <div class="custom-file" id="input_image_edit"></div>
-          <p>Video</p>
-          <div class="custom-file" id="input_video_edit"></div>
-          <button id="edit_Button" name="edit_Button" type="submit">Edytuj</button>
-        </form>
-      </div>
-    </section>
+            <a href="#" id="nav_add"><i class="fas fa-plus"></i> Dodaj element</a>
+            <a href="#" id="nav_edit"><i class="far fa-edit"></i> Edytuj element</a>
+            <a href="#" id="nav_delete"><i class="far fa-trash-alt"></i> Usuń element</a>
+            <a href="../index.html" id="nav_log_out"><i class="fas fa-sign-out-alt"></i> Wyloguj</a>
+        </nav>
+        <section id="add_new" class="align_vertically">
+            <div class="container">
+                <img src="../Photos/Logo/BulpixMedia-01.png" alt="logo Bulpix media" class="logo_img">
+                <form action="" enctype="multipart/form-data" class="align_vertically" method="POST" id="form_add">
+                    <h2>Dodaj element do porfolio</h2>
+                    <input type="text" name="pname" placeholder="Nazwa projektu..." id="add_Name" />
+                    <textarea rows="5" cols="80" id="add_Des" placeholder="Opis projektu..."></textarea>
+                    <p>Miniaturka - zdjęcie</p>
+                    <div class="custom-file" id="input_image">
+                    </div>
+                    <p>Video</p>
+                    <input type="text" name="add_Video" placeholder="Znacznik z YouTube..." id="add_Video" />
+            </div>
+            <button id="add_Button" name="add_Button" type="submit">Dodaj</button>
+            </form>
+            </div>
+        </section>
 
-    <section id="delete" class="align_vertically">
-      <div class="container">
-        <img src="../Photos/Logo/BulpixMedia-01.png" alt="logo Bulpix media" class="logo_img">
-        <form action="" enctype="multipart/form-data" class="align_vertically" method="POST" id="form_delete">
-          <h2>Usuń element z porfolio</h2>
-          <p>Wybierz element z listy</p>
-          <select class="custom-select mb-3" id="delete_select"></select>
-          <button id="delete_Button" name="delete_Button" type="submit">Usuń</button>
-        </form>
-      </div>
-    </section>
+        <section id="edit" class="align_vertically">
+            <div class="container">
+                <img src="../Photos/Logo/BulpixMedia-01.png" alt="logo Bulpix media" class="logo_img">
+                <form action="" enctype="multipart/form-data" class="align_vertically" method="POST" id="form_edit">
+                    <h2>Edytuj element z porfolio</h2>
+                    <p>Wybierz element z listy</p>
+
+                    <select class="custom-select mb-3" id="edit_selct"></select>
+
+                    <input type="text" name="pnameEdit" placeholder="Nazwa projektu..." id="edit_Name" />
+                    <textarea rows="5" cols="80" id="edit_Des" placeholder="Opis projektu..."></textarea>
+                    <p>Miniaturka - zdjęcie</p>
+                    <div class="custom-file" id="input_image_edit"></div>
+                    <p>Video</p>
+                    <input type="text" name="edit_Video" placeholder="Znacznik z YouTube..." id="edit_Video" />
+                    <button id="edit_Button" name="edit_Button" type="submit">Edytuj</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="delete" class="align_vertically">
+            <div class="container">
+                <img src="../Photos/Logo/BulpixMedia-01.png" alt="logo Bulpix media" class="logo_img">
+                <form action="" enctype="multipart/form-data" class="align_vertically" method="POST" id="form_delete">
+                    <h2>Usuń element z porfolio</h2>
+                    <p>Wybierz element z listy</p>
+                    <select class="custom-select mb-3" id="delete_select"></select>
+                    <button id="delete_Button" name="delete_Button" type="submit">Usuń</button>
+                </form>
+            </div>
+        </section>
 
 
-    <div id="toast" class="align_row">
-      <div id="toast_img"><i class="far fa-bell"></i></div>
-      <div id="toast_des"></div>
-    </div>
-  </main>
+        <div id="toast" class="align_row">
+            <div id="toast_img"><i class="far fa-bell"></i></div>
+            <div id="toast_des"></div>
+        </div>
+    </main>
 </body>
 
 </html>

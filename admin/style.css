@@ -41,7 +41,9 @@ body {
     box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
     padding: 10px !important;
     border: 1px solid #f1f1f1 !important;
     border-radius: 5px !important;
@@ -50,7 +52,8 @@ input, textarea, select {
     color: #8b8e91;
 }
 
-.custom-select, .custom-file-label {
+.custom-select,
+.custom-file-label {
     color: #8b8e91ad !important;
     border: 1px solid #f1f1f1 !important;
 }
@@ -132,7 +135,9 @@ button:hover {
     }
 }
 
-#add_new, #edit, #delete {
+#add_new,
+#edit,
+#delete {
     text-align: center;
     width: 100vw;
     height: auto;
@@ -144,8 +149,9 @@ button:hover {
     height: 0px;
 }
 
-
-#add_new button, #edit button, #delete button {
+#add_new button,
+#edit button,
+#delete button {
     width: 50%;
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -154,7 +160,9 @@ button:hover {
     border-radius: 2px !important;
 }
 
-#add_new h2, #edit h2, #delete h2 {
+#add_new h2,
+#edit h2,
+#delete h2 {
     font-size: 1.5em;
     color: #48c6ef;
 }
@@ -176,7 +184,8 @@ main {
     font-weight: lighter;
 }
 
-.menu a:hover, .fa-sign-out-alt:hover {
+.menu a:hover,
+.fa-sign-out-alt:hover {
     color: #48c6ef;
     text-decoration: none;
     background-color: white;
@@ -201,10 +210,10 @@ main {
     all: unset;
     position: fixed;
     top: 0;
-    border: 1px solid  #f1f1f1 !important; 
-    color:  #8b8e91ad;   
-    z-index: 4;  
-    margin: 10px !important;  
+    border: 1px solid #f1f1f1 !important;
+    color: #8b8e91ad;
+    z-index: 4;
+    margin: 10px !important;
     padding: 10px;
     border-radius: 3px !important;
 }
@@ -403,4 +412,16 @@ main {
 #back_arrow {
     color: white;
     font-size: 1.7em;
+}
+
+#loadingGIF {
+    z-index: 999 !important;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

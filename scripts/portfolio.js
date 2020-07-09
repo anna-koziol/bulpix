@@ -1,26 +1,24 @@
-
-document.addEventListener("DOMContentLoaded", function (event) {
-    $(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function(event) {
+    $(document).ready(function() {
         console.log("Podłączono portfolio.js");
         $('#nav_1, #nav_2').css("opacity", 1);
         //complete load logo in footer
-        $("#logo_contact").one("load", function () {
+        $("#logo_contact").one("load", function() {
             $('main').css('margin-bottom', $('#contact').innerHeight());
-        }).each(function () {
+        }).each(function() {
             if (this.complete) { $(this).trigger('load'); }
         });
-
 
         var data = new FormData();
         data.append('todo', 'show_portfolio');
 
         $.ajax({
-            url: "./show_portfolio.php",
-            method: "post",
-            processData: false,
-            contentType: false,
-            data: data
-        })
+                url: "./show_portfolio.php",
+                method: "post",
+                processData: false,
+                contentType: false,
+                data: data
+            })
             .done(res => {
                 fill_portfolio(JSON.parse(res))
             });
@@ -44,15 +42,12 @@ function fill_portfolio(data) {
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <video controls src="${data[i].video_link}" class="portfolio_vid"></video>
-                    </div>
+                    <div class="modal-body">${data[i].video_link}</div>
                 </div>
             </div>
-        </div>`
-        )
+        </div>`)
         elem.append(` 
-        <div class="col-12 col-md-6 col-lg-3 porfolio_img align-self-center">
+        <div class="col-12 col-md-6 col-lg-4 porfolio_img align-self-center">
             <div class="porfolio_img_description">
                 <h4>${data[i].project_name}</h4>
                 <p>${data[i].project_des}</p>
@@ -63,6 +58,17 @@ function fill_portfolio(data) {
             <img src="${data[i].photo_link}" alt="${data[i].photo_link}" onError="image_error($(this))" />
         </div>`)
     }
+
+    $('.close').click(function() {
+        var videos = $('.modal-body iframe')
+        for (let i = 0; i < videos.length; i++) {
+            $(videos[i]).attr('src', $(videos[i]).attr('src'));
+        }
+    });
+    $('.modal').on('shown.bs.modal', function() {
+        console.log("change 2")
+        $(this).css('display', 'flex')
+    });
 }
 
 function image_error(img) {
